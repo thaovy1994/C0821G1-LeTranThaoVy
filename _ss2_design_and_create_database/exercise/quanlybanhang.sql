@@ -1,5 +1,5 @@
-CREATE DATABASE quanlybanhang;
-USE quanlybanhang;
+CREATE DATABASE sale_management;
+USE sale_management;
 
 CREATE TABLE phieu_xuat(
 so_px int primary key,
