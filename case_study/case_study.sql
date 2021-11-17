@@ -109,6 +109,7 @@ foreign key (ma_hop_dong_style) references hop_dong(ma_hop_dong),
 foreign key (ma_dich_vu_di_kem_style) references dich_vu_di_kem(ma_dich_vu_di_kem)
 );
 
+-- task 1
 insert into trinh_do values (1,'Trung cấp');
 insert into trinh_do values (2,'Cao đẳng');
 insert into trinh_do values (3,'Đại học');
@@ -147,7 +148,6 @@ insert into dich_vu_di_kem values(3,'thức ăn',300,2,'available');
 insert into dich_vu_di_kem values(4,'nước uống',100,3,'available');
 insert into dich_vu_di_kem values(5,'thuê xe di chuyển tham quan resort',150,2,'available');
 
--- task 1
 insert into nhan_vien values(1,'Le Tran Thao Vy',"1994-01-13","123456789",6.000,090123123,'mina@gmail.com','ltt',4,3,3);
 insert into nhan_vien values(2,'Dang Huu Du',"1990-01-01","123123123",9.000,0905123456,'du@gmail.com','QN',2,3,2);
 insert into nhan_vien values(3,'Nguyen Hoang Gia Bao',"1993-01-01","987654321",8.000,0905222222,'bao@gmail.com','DN',3,3,3);
@@ -179,10 +179,19 @@ insert into dich_vu values(5,1,3,'Room',150,1800,23,'family','free minibar',40,1
 
 -- insert into hop_dong values
 -- task 2.
-select * from nhan_vien where ho_ten like '[HKT]%'; -- chưa hiện đc
+select * 
+from nhan_vien 
+where ho_ten like 'k%' or ho_ten like 'h%' or ho_ten like 't%' and length(ho_ten) < 15;
 
 -- task 3.
-select * from khach_hang where dia_chi = 'Đà Nẵng' or dia_chi = 'Quảng Trị';
+select *, (YEAR(CURDATE()) - YEAR(ngay_sinh)) AS age 
+from khach_hang 
+where dia_chi = 'Đà Nẵng' or dia_chi = 'Quảng Trị'and (YEAR(CURDATE()) - YEAR(ngay_sinh)) between 18 and 50;
 
 -- task 4.
-select * from khach_hang where ma_loai_khach_style = 1;
+-- hiển thị những khách là Diamond.
+select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach 
+from khach_hang kh inner join loai_khach lk 
+on kh.ma_loai_khach_style = lk.ma_loai_khach
+where ma_loai_khach_style = 1;
+-- 
