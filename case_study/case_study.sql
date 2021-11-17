@@ -177,7 +177,12 @@ insert into dich_vu values(3,2,2,'House',200,2000,25,'standard','free 2 bottle o
 insert into dich_vu values(4,3,1,'Villa',100,1600,20,'executive','free upgrade room',30,2);
 insert into dich_vu values(5,1,3,'Room',150,1800,23,'family','free minibar',40,1);
 
--- insert into hop_dong values
+insert into hop_dong values (1,'2021-07-10','2021-10-10',3.000,5.000,3,2,1);
+insert into hop_dong values (2,'2021-07-10','2021-10-10',3.000,5.000,1,3,4);
+insert into hop_dong values (3,'2021-07-10','2021-10-10',3.000,5.000,2,3,1);
+insert into hop_dong values (4,'2021-07-10','2021-10-10',3.000,5.000,1,7,4);
+update hop_dong set tien_dat_coc = 5000 and tong_tien = 8000 where ma_hop_dong = 1;
+
 -- task 2.
 select * 
 from nhan_vien 
@@ -194,4 +199,5 @@ select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach
 from khach_hang kh inner join loai_khach lk 
 on kh.ma_loai_khach_style = lk.ma_loai_khach
 where ma_loai_khach_style = 1;
--- 
+-- hiển thị số lần đặt phòng sắp xếp tăng dần.
+select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach 
