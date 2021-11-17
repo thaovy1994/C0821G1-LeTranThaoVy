@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS case_study;
 CREATE DATABASE case_study;
 USE case_study;
 
@@ -177,11 +178,11 @@ insert into dich_vu values(3,2,2,'House',200,2000,25,'standard','free 2 bottle o
 insert into dich_vu values(4,3,1,'Villa',100,1600,20,'executive','free upgrade room',30,2);
 insert into dich_vu values(5,1,3,'Room',150,1800,23,'family','free minibar',40,1);
 
-insert into hop_dong values (1,'2021-07-10','2021-10-10',3.000,5.000,3,2,1);
-insert into hop_dong values (2,'2021-07-10','2021-10-10',3.000,5.000,1,3,4);
-insert into hop_dong values (3,'2021-07-10','2021-10-10',3.000,5.000,2,3,1);
-insert into hop_dong values (4,'2021-07-10','2021-10-10',3.000,5.000,1,7,4);
-update hop_dong set tien_dat_coc = 5000 and tong_tien = 8000 where ma_hop_dong = 1;
+insert into hop_dong values (1,'2021-07-10','2021-10-10',3000,5000,3,2,1);
+insert into hop_dong values (2,'2021-07-10','2021-10-10',3000,5000,1,3,4);
+insert into hop_dong values (3,'2021-07-11','2021-10-11',3000,5000,2,3,1);
+insert into hop_dong values (4,'2021-07-12','2021-10-12',3000,5000,1,7,4);
+insert into hop_dong values (5,'2021-07-13','2021-10-14',4000,6000,1,3,2);
 
 -- task 2.
 select * 
@@ -194,10 +195,17 @@ from khach_hang
 where dia_chi = 'Đà Nẵng' or dia_chi = 'Quảng Trị'and (YEAR(CURDATE()) - YEAR(ngay_sinh)) between 18 and 50;
 
 -- task 4.
+-- Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần
+select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, count(*) AS 'số lần đặt'
+from khach_hang kh 
+inner join loai_khach lk on kh.ma_loai_khach_style = lk.ma_loai_khach
+inner join hop_dong hd on hd.ma_khach_hang_style = kh.ma_khach_hang
 -- hiển thị những khách là Diamond.
-select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach 
-from khach_hang kh inner join loai_khach lk 
-on kh.ma_loai_khach_style = lk.ma_loai_khach
-where ma_loai_khach_style = 1;
--- hiển thị số lần đặt phòng sắp xếp tăng dần.
-select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach 
+where ma_loai_khach_style = 1
+group by kh.ma_khach_hang;
+-- hiển thị số lần đặt phòng sx tăng dần.
+
+
+-- task 5.
+-- hiển thị khách từng đặt phòng (kể cả chưa từng đặt)
+-- select ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, SUM( 
