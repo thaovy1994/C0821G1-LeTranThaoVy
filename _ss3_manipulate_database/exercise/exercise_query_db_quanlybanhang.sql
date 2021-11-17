@@ -24,9 +24,12 @@ insert into `orderdetail` values (2,5,4);
 insert into `orderdetail` values (2,3,3);
 
 -- Hiển thị các thông tin  gồm oID, oDate, oPrice của tất cả các hóa đơn trong bảng Order
-
+select order_id, order_date, order_total_price
+from `order`;
 -- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
-
+select c.customer_id, c.customer_name, p.product_name
+from customer c
+inner join product p on 
 -- Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
 
 -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn 

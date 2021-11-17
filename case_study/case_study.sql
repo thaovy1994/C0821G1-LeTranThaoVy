@@ -201,10 +201,10 @@ from khach_hang kh
 inner join loai_khach lk on kh.ma_loai_khach_style = lk.ma_loai_khach
 inner join hop_dong hd on hd.ma_khach_hang_style = kh.ma_khach_hang
 -- hiển thị những khách là Diamond.
-where ma_loai_khach_style = 1
-group by kh.ma_khach_hang;
+where lk.ten_loai_khach = 'Diamond'
+group by kh.ma_khach_hang
 -- hiển thị số lần đặt phòng sx tăng dần.
-
+order by hd.ma_hop_dong DESC;
 
 -- task 5.
 -- hiển thị khách từng đặt phòng (kể cả chưa từng đặt)
