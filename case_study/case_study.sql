@@ -208,4 +208,9 @@ order by hd.ma_hop_dong DESC;
 
 -- task 5.
 -- hiển thị khách từng đặt phòng (kể cả chưa từng đặt)
+select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, hd.ma_hop_dong, dv.ten_dich_vu, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc
+from dich_vu dv
+inner join hop_dong hd on hd.ma_dich_vu_style = dv.ma_dich_vu
+inner join khach_hang kh on hd.ma_khach_hang_style = kh.ma_khach_hang
+inner join loai_khach lk on kh.ma_loai_khach_style = lk.ma_loai_khach;
 -- select ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, SUM( 

@@ -1,11 +1,9 @@
-DROP database IF EXISTS quanlybanhang;
-CREATE database quan_ly_ban_hang;
 USE quan_ly_ban_hang;
 
 CREATE TABLE customer(
 customer_id int primary key,
 customer_name varchar(45),
-customer_age date
+customer_age int
 );
 
 CREATE TABLE product(
