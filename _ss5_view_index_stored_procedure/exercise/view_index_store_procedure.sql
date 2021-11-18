@@ -51,21 +51,23 @@ end
 // delimiter ;
 
 call sp_find_products();
+
 drop procedure if exists sp_find_products;
 delimiter //
-create procedure sp_find_products(id int, product_name varchar(50))
+create procedure sp_find_products(id_fix int)
 begin
-update products set `product_name` = 'bavi milk' where id = 1;
+update products set id = 10
+where id= id_fix;
 end
 // delimiter ;
 
-call sp_find_products(1,'bavi milk');
+call sp_find_products(1);
 
 delimiter //
 drop procedure if exists sp_find_products;
-create procedure sp_find_products(id int primary key)
+create procedure sp_find_products(id_del int)
 begin
-delete from products where id = 1;
+delete from products where id = id_del;
 end
 // delimiter ;
 

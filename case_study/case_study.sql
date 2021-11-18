@@ -183,6 +183,11 @@ insert into hop_dong values (2,'2021-07-10','2021-10-10',3000,5000,1,3,4);
 insert into hop_dong values (3,'2021-07-11','2021-10-11',3000,5000,2,3,1);
 insert into hop_dong values (4,'2021-07-12','2021-10-12',3000,5000,1,7,4);
 insert into hop_dong values (5,'2021-07-13','2021-10-14',4000,6000,1,3,2);
+insert into hop_dong values (6,'2020-07-13','2020-10-14',3500000,6,6,3);
+insert into hop_dong values (7,'2020-07-13','2020-10-14',3500000,6,6,3);
+
+insert into hop_dong_chi_tiet values(1,2,1,2);
+insert into hop_dong_chi_tiet values(2,4,2,3);
 
 -- task 2.
 select * 
@@ -210,16 +215,22 @@ alter table hop_dong drop tong_tien;
 -- alter table hop_dong add tong_tien;  -- chưa run
 -- task 5.
 -- hiển thị khách từng đặt phòng (kể cả chưa từng đặt)
-select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, hd.ma_hop_dong, dv.ten_dich_vu, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc
--- , tong_tien
-from dich_vu dv
-inner join hop_dong hd on hd.ma_dich_vu_style = dv.ma_dich_vu
-right join khach_hang kh on hd.ma_khach_hang_style = kh.ma_khach_hang  -- liệt kê lun cả khách chưa từng đặt.
-inner join loai_khach lk on kh.ma_loai_khach_style = lk.ma_loai_khach;
+select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, hd.ma_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, dv.ten_dich_vu,
+sum(hdct.so_luong*dvdk.gia) + dv.chi_phi_thue AS total
+from khach_hang AS kh
+join loai_khach AS lk on kh.ma_loai_khach_style = lk.ma_loai_khach
+left join hop_dong AS hd on hd.ma_khach_hang_style = kh.ma_khach_hang
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong_style = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem_style
+join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu_style
+group by hd.ma_hop_dong;
 
 -- task 6
 -- hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu của all các loại dịch vụ chưa từng được khách hàng thực hiện 
 -- đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
-select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu, datediff(month,'2019/01/01','2019/03/31')
+select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu
 from dich_vu dv
-inner join loai_dich_vu ldv on dv.ma_loai_dich_vu_style = ldv.ma_loai_dich_vu;
+inner join loai_dich_vu ldv on dv.ma_loai_dich_vu_style = ldv.ma_loai_dich_vu
+inner join hop_dong AS hd on hd.ma_dich_vu_style = dv.ma_dich_vu
+where hd.ngay_lam_hop_dong between cast('2019-01-01'as date) and cast('2019-03-31'as date);
+
