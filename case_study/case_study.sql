@@ -26,12 +26,12 @@ luong double,
 so_dien_thoai varchar(45),
 email varchar(45),
 dia_chi varchar(45),
-ma_vi_tri_style int,
-ma_trinh_do_style int,
-ma_bo_phan_style int,
-foreign key (ma_vi_tri_style) references vi_tri(ma_vi_tri),
-foreign key (ma_trinh_do_style) references trinh_do(ma_trinh_do),
-foreign key (ma_bo_phan_style) references bo_phan(ma_bo_phan)
+ma_vi_tri int,
+ma_trinh_do int,
+ma_bo_phan int,
+foreign key (ma_vi_tri) references vi_tri(ma_vi_tri),
+foreign key (ma_trinh_do) references trinh_do(ma_trinh_do),
+foreign key (ma_bo_phan) references bo_phan(ma_bo_phan)
 );
 
 CREATE TABLE loai_khach(
@@ -41,7 +41,7 @@ ten_loai_khach varchar(45)
 
 CREATE TABLE khach_hang(
 ma_khach_hang int primary key,
-ma_loai_khach_style int,
+ma_loai_khach int,
 ho_ten varchar(45),
 ngay_sinh date,
 gioi_tinh BIT(1),
@@ -49,7 +49,7 @@ so_cmnd varchar(45),
 so_dien_thoai varchar(45),
 email varchar(45),
 dia_chi varchar(45),
-foreign key (ma_loai_khach_style) references loai_khach(ma_loai_khach)
+foreign key (ma_loai_khach) references loai_khach(ma_loai_khach)
 );
 
 CREATE TABLE loai_dich_vu(
@@ -65,8 +65,8 @@ gia_thue double
 
 CREATE TABLE dich_vu(
 ma_dich_vu int primary key,
-ma_kieu_thue_style int,
-ma_loai_dich_vu_style int,
+ma_kieu_thue int,
+ma_loai_dich_vu int,
 ten_dich_vu varchar(45),
 dien_tich int,
 chi_phi_thue double,
@@ -75,8 +75,8 @@ tieu_chuan_phong varchar(45),
 mo_ta_tien_nghi_khac varchar(45),
 dien_tich_ho_boi double,
 so_tang int,
-foreign key (ma_kieu_thue_style) references kieu_thue(ma_kieu_thue),
-foreign key (ma_loai_dich_vu_style) references loai_dich_vu(ma_loai_dich_vu)
+foreign key (ma_kieu_thue) references kieu_thue(ma_kieu_thue),
+foreign key (ma_loai_dich_vu) references loai_dich_vu(ma_loai_dich_vu)
 );
 
 CREATE TABLE hop_dong(
@@ -84,13 +84,12 @@ ma_hop_dong int primary key,
 ngay_lam_hop_dong datetime,
 ngay_ket_thuc datetime,
 tien_dat_coc double,
-tong_tien double,
-ma_nhan_vien_style int,
-ma_khach_hang_style int,
-ma_dich_vu_style int,
-foreign key (ma_nhan_vien_style) references nhan_vien(ma_nhan_vien),
-foreign key (ma_khach_hang_style) references khach_hang(ma_khach_hang),
-foreign key (ma_dich_vu_style) references dich_vu(ma_dich_vu)
+ma_nhan_vien int,
+ma_khach_hang int,
+ma_dich_vu int,
+foreign key (ma_nhan_vien) references nhan_vien(ma_nhan_vien),
+foreign key (ma_khach_hang) references khach_hang(ma_khach_hang),
+foreign key (ma_dich_vu) references dich_vu(ma_dich_vu)
 );
 
 CREATE TABLE dich_vu_di_kem(
@@ -103,11 +102,11 @@ trang_thai varchar(45)
 
 CREATE TABLE hop_dong_chi_tiet(
 ma_hop_dong_chi_tiet int primary key,
-ma_hop_dong_style int,
-ma_dich_vu_di_kem_style int,
+ma_hop_dong int,
+ma_dich_vu_di_kem int,
 so_luong int,
-foreign key (ma_hop_dong_style) references hop_dong(ma_hop_dong),
-foreign key (ma_dich_vu_di_kem_style) references dich_vu_di_kem(ma_dich_vu_di_kem)
+foreign key (ma_hop_dong) references hop_dong(ma_hop_dong),
+foreign key (ma_dich_vu_di_kem) references dich_vu_di_kem(ma_dich_vu_di_kem)
 );
 
 -- task 1
@@ -171,6 +170,10 @@ insert into khach_hang values(7,1,'Van Lanh','1996-11-10',0,444444444,0905111333
 insert into khach_hang values(8,4,'Phuc Duy','1997-11-10',0,333334234,0905444333,'pd@gmail.com','Quảng Ninh');
 insert into khach_hang values(9,4,'Le Phien','1998-11-10',0,222222222,0905399933,'lp@gmail.com','Quảng Nam');
 insert into khach_hang values(10,5,'Trung Kien','1998-11-10',0,111111111,0905388333,'tk@gmail.com','Đà Nẵng');
+insert into khach_hang values(11,5,'Trung Kien','1998-11-10',0,111111111,0905388333,'kn@gmail.com','Lạng Sơn');
+insert into khach_hang values(12,2,'My le','1991-08-10',0,111111111,0905368333,'my@gmail.com','Quảng Ngãi');
+insert into khach_hang values(13,3,'thuong khac','1986-11-10',0,111111111,0905488333,'thuong@gmail.com','Vinh');
+insert into khach_hang values(14,1,'nghia','1996-11-10',0,111121111,0905888333,'nghia@gmail.com','Vinh');
 
 insert into dich_vu values(1,3,1,'Villa',50,1600,20,'executive','free minibar',30,2);
 insert into dich_vu values(2,1,2,'House',200,2000,25,'standard','free 2 cup of coffee',40,3);
@@ -178,16 +181,20 @@ insert into dich_vu values(3,2,2,'House',200,2000,25,'standard','free 2 bottle o
 insert into dich_vu values(4,3,1,'Villa',100,1600,20,'executive','free upgrade room',30,2);
 insert into dich_vu values(5,1,3,'Room',150,1800,23,'family','free minibar',40,1);
 
-insert into hop_dong values (1,'2021-07-10','2021-10-10',3000,5000,3,2,1);
-insert into hop_dong values (2,'2021-07-10','2021-10-10',3000,5000,1,3,4);
-insert into hop_dong values (3,'2021-07-11','2021-10-11',3000,5000,2,3,1);
-insert into hop_dong values (4,'2021-07-12','2021-10-12',3000,5000,1,7,4);
-insert into hop_dong values (5,'2021-07-13','2021-10-14',4000,6000,1,3,2);
+insert into hop_dong values (1,'2021-07-10','2021-10-10',3000,3,2,1);
+insert into hop_dong values (2,'2021-07-10','2021-10-10',3000,1,3,4);
+insert into hop_dong values (3,'2021-07-11','2021-10-11',3000,2,3,1);
+insert into hop_dong values (4,'2021-07-12','2021-10-12',3000,1,7,4);
+insert into hop_dong values (5,'2021-07-13','2021-10-14',4000,1,3,2);
 insert into hop_dong values (6,'2020-07-13','2020-10-14',3500000,6,6,3);
 insert into hop_dong values (7,'2020-07-13','2020-10-14',3500000,6,6,3);
+insert into hop_dong values (8,'2019-01-13','2019-01-23',3500000,6,6,3);
+insert into hop_dong values (9,'2018-01-13','2018-01-23',4000,6,6,3);
+insert into hop_dong values (10,'2019-02-13','2018-05-23',5000,5,3,4);
 
 insert into hop_dong_chi_tiet values(1,2,1,2);
 insert into hop_dong_chi_tiet values(2,4,2,3);
+insert into hop_dong_chi_tiet values(3,8,3,1);
 
 -- task 2.
 select * 
@@ -203,34 +210,161 @@ where dia_chi = 'Đà Nẵng' or dia_chi = 'Quảng Trị'and (YEAR(CURDATE()) -
 -- Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần
 select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, count(*) AS 'số lần đặt'
 from khach_hang kh 
-inner join loai_khach lk on kh.ma_loai_khach_style = lk.ma_loai_khach
-inner join hop_dong hd on hd.ma_khach_hang_style = kh.ma_khach_hang
+inner join loai_khach lk on kh.ma_loai_khach = lk.ma_loai_khach
+inner join hop_dong hd on hd.ma_khach_hang = kh.ma_khach_hang
 -- hiển thị những khách là Diamond.
 where lk.ten_loai_khach = 'Diamond'
 group by kh.ma_khach_hang
 -- hiển thị số lần đặt phòng sx tăng dần.
 order by hd.ma_hop_dong DESC;
 
-alter table hop_dong drop tong_tien;
--- alter table hop_dong add tong_tien;  -- chưa run
+-- alter table hop_dong drop tong_tien;
 -- task 5.
 -- hiển thị khách từng đặt phòng (kể cả chưa từng đặt)
 select kh.ma_khach_hang, kh.ho_ten, lk.ten_loai_khach, hd.ma_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, dv.ten_dich_vu,
 sum(hdct.so_luong*dvdk.gia) + dv.chi_phi_thue AS total
 from khach_hang AS kh
-join loai_khach AS lk on kh.ma_loai_khach_style = lk.ma_loai_khach
-left join hop_dong AS hd on hd.ma_khach_hang_style = kh.ma_khach_hang
-join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong_style = hd.ma_hop_dong
-join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem_style
-join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu_style
+join loai_khach AS lk on kh.ma_loai_khach = lk.ma_loai_khach
+join hop_dong AS hd on hd.ma_khach_hang = kh.ma_khach_hang
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong= hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
 group by hd.ma_hop_dong;
 
 -- task 6
 -- hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu của all các loại dịch vụ chưa từng được khách hàng thực hiện 
 -- đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
-select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu
+select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu, hd.ngay_lam_hop_dong
 from dich_vu dv
-inner join loai_dich_vu ldv on dv.ma_loai_dich_vu_style = ldv.ma_loai_dich_vu
-inner join hop_dong AS hd on hd.ma_dich_vu_style = dv.ma_dich_vu
-where hd.ngay_lam_hop_dong between cast('2019-01-01'as date) and cast('2019-03-31'as date);
+join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+join hop_dong AS hd on hd.ma_dich_vu = dv.ma_dich_vu
+where month(hd.ngay_lam_hop_dong) between 1 and 4 and year(hd.ngay_lam_hop_dong) = 2019
+ and ldv.ten_loai_dich_vu not in(
+select dv.ma_dich_vu
+from hop_dong AS hd
+);
+-- where hd.ngay_lam_hop_dong between '2019-01-01' and '2019-03-31';
 
+-- task 7
+select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.so_nguoi_toi_da, dv.chi_phi_thue, ldv.ten_loai_dich_vu
+from dich_vu AS dv
+join loai_dich_vu AS ldv on ldv.ma_loai_dich_vu = dv.ma_loai_dich_vu
+join hop_dong AS hd on hd.ma_dich_vu= dv.ma_dich_vu
+where year(ngay_lam_hop_dong) = 2018 and hd.ma_hop_dong not in (
+select ma_dich_vu
+from dich_vu  
+where year(ngay_lam_hop_dong) = 2019
+);
+
+-- task 8
+-- cách 1:
+select distinct ho_ten
+from khach_hang;
+-- cách 2:
+select ho_ten
+from khach_hang
+union 
+select ho_ten
+from khach_hang;
+-- cách 3:
+select ma_khach_hang, ho_ten
+from khach_hang
+group by ho_ten;
+
+-- task 9
+-- doanh thu theo tháng
+select hd.ma_hop_dong, kh.ho_ten, hd.ngay_lam_hop_dong, hdct.so_luong,
+sum(hdct.so_luong*dvdk.gia) + dv.chi_phi_thue AS total
+from khach_hang AS kh
+join loai_khach AS lk on kh.ma_loai_khach = lk.ma_loai_khach
+left join hop_dong AS hd on hd.ma_khach_hang = kh.ma_khach_hang
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
+-- 
+where year(ngay_lam_hop_dong) = 2019
+group by month('2019-12-01'); 
+
+-- task 10
+select hd.ma_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, hd.tien_dat_coc, dvdk.don_vi
+,sum(dvdk.ma_dich_vu_di_kem) AS so_luong_dvdk
+from hop_dong AS hd
+left join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+group by hd.ma_hop_dong
+;
+
+-- task 11
+-- 11.	Hiển thị thông tin các dịch vụ đi kèm
+-- bởi những khách hàng có ten_loai_khach là “Diamond” và có dia_chi ở “Vinh” hoặc “Quảng Ngãi”.
+-- Hiển thị thông tin các dịch vụ đi kèm
+select dvdk.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem, dvdk.gia, kh.ho_ten, lk.ten_loai_khach, kh.dia_chi
+from hop_dong AS hd
+join khach_hang kh on kh.ma_khach_hang = hd.ma_khach_hang
+join loai_khach AS lk on lk.ma_loai_khach = kh.ma_loai_khach
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+where ten_loai_khach = 'Diamond' and (dia_chi = 'Vinh' or dia_chi = 'Quảng Ngãi');
+
+-- task 12
+select hd.ma_hop_dong, nv.ho_ten, kh.ho_ten, kh.so_dien_thoai, dv.ten_dich_vu, sum(dvdk.don_vi) AS so_luong_dich_vu_di_kem, tien_dat_coc 
+from hop_dong AS hd
+join nhan_vien AS nv on nv.ma_nhan_vien = hd.ma_nhan_vien
+join khach_hang AS kh on kh.ma_khach_hang = hd.ma_khach_hang
+join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+where month(hd.ngay_lam_hop_dong) between 10 and 12 and year(hd.ngay_lam_hop_dong) = 2019
+and hd.ma_hop_dong not in (
+select hd.ma_hop_dong
+from hop_dong
+where month(hd.ngay_lam_hop_dong) between 1 and 6 and year(hd.ngay_lam_hop_dong) = 2019
+);
+
+-- task 13
+select dvdk.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem, max(dvdk.don_vi)
+from khach_hang AS kh 
+join hop_dong AS hd on kh.ma_khach_hang = hd.ma_khach_hang
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+group by dvdk.ma_dich_vu_di_kem;
+
+-- task 14
+select hd.ma_hop_dong, ldv.ten_loai_dich_vu, dvdk.ten_dich_vu_di_kem, count(ldv.ma_loai_dich_vu) AS so_lan_su_dung
+from khach_hang AS kh 
+join hop_dong AS hd on kh.ma_khach_hang = hd.ma_khach_hang
+join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
+join loai_dich_vu AS ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+where dvdk.don_vi = 1
+group by hd.ma_hop_dong;
+
+-- task 15
+select nv.ma_nhan_vien, nv.ho_ten, td.ten_trinh_do, bp.ten_bo_phan, nv.so_dien_thoai, count(hd.ma_hop_dong) AS so_luong_hop_dong
+from nhan_vien AS nv
+join trinh_do AS td on td.ma_trinh_do = nv.ma_trinh_do
+join bo_phan AS bp on bp.ma_bo_phan = nv.ma_bo_phan
+join hop_dong AS hd on hd.ma_nhan_vien = nv.ma_nhan_vien
+group by ma_nhan_vien
+having count(hd.ma_hop_dong) <3 
+-- and year(hd.ngay_lam_hop_dong) between 2018 and 2019
+;
+
+-- task 16
+delete from nhan_vien
+where ma_nhan_vien not in (
+select ma_nhan_vien
+from hop_dong
+where year(ngay_lam_hop_dong) between 2017 and 2019);
+-- tắt chế độ ràng buộc khóa ngoại
+SET FOREIGN_KEY_CHECKS=0;
+select *
+from nhan_vien;
+
+-- task 20
+select ma_nhan_vien, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+from nhan_vien
+union
+select ma_khach_hang, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+from khach_hang;
