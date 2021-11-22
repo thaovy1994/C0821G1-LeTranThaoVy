@@ -359,10 +359,25 @@ set sql_safe_updates = 1;
 -- from nhan_vien;
 
 -- task 17
-set sql_safe_update = 0;
+set sql_safe_updates = 0;
 update loai_dich_vu set ten_loai_dich_vu = 'Platinum'
 where ten_loai_dich_vu = 'Diamond';
-set sql_safe_update = 1;
+set sql_safe_updates = 1;
+
+-- task 18
+set sql_safe_updates = 0;
+delete hd,kh from khach_hang AS kh
+join hop_dong AS hd on kh.ma_khach_hang = hd.ma_khach_hang
+where year(ngay_lam_hop_dong) < 2016;
+set sql_safe_updates = 1;
+
+-- task 19
+set sql_safe_updates = 0;
+update dich_vu_di_kem AS dvdk
+join hop_dong_chi_tiet AS hdct on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+set dvdk.gia = dvdk.gia*2
+where hdct.so_luong > 10;
+set sql_safe_updates = 1;
 
 -- task 20
 select ma_nhan_vien, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
