@@ -232,21 +232,24 @@ join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
 group by hd.ma_hop_dong;
 
 -- task 6
--- hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu của all các loại dịch vụ chưa từng được khách hàng thực hiện 
+-- ... các loại dịch vụ chưa từng được khách hàng thực hiện 
 -- đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
 select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu, hd.ngay_lam_hop_dong
 from dich_vu dv
 join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
 join hop_dong AS hd on hd.ma_dich_vu = dv.ma_dich_vu
-where month(hd.ngay_lam_hop_dong) between 1 and 4 and year(hd.ngay_lam_hop_dong) = 2019
- and ldv.ten_loai_dich_vu not in(
-select dv.ma_dich_vu
+where not exists(
+select *
 from hop_dong AS hd
-);
+where hd.ma_dich_vu = dv.ma_dich_vu and month(hd.ngay_lam_hop_dong) between 1 and 4 and year(hd.ngay_lam_hop_dong) = 2019
+)
+group by ma_dich_vu;
 -- where hd.ngay_lam_hop_dong between '2019-01-01' and '2019-03-31';
 
 -- task 7
-select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.so_nguoi_toi_da, dv.chi_phi_thue, ldv.ten_loai_dich_vu
+-- tất cả các loại dịch vụ đã từng được khách hàng đặt phòng trong năm 2018 
+-- nhưng chưa từng được khách hàng đặt phòng trong năm 2019.
+select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.so_nguoi_toi_da, dv.chi_phi_thue, ldv.ten_loai_dich_vu, hd.ngay_lam_hop_dong
 from dich_vu AS dv
 join loai_dich_vu AS ldv on ldv.ma_loai_dich_vu = dv.ma_loai_dich_vu
 join hop_dong AS hd on hd.ma_dich_vu= dv.ma_dich_vu
@@ -273,6 +276,7 @@ group by ho_ten;
 
 -- task 9
 -- doanh thu theo tháng
+-- mỗi tháng trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
 select hd.ma_hop_dong, kh.ho_ten, hd.ngay_lam_hop_dong, hdct.so_luong,
 sum(hdct.so_luong*dvdk.gia) + dv.chi_phi_thue AS total
 from khach_hang AS kh
@@ -281,11 +285,11 @@ left join hop_dong AS hd on hd.ma_khach_hang = kh.ma_khach_hang
 join hop_dong_chi_tiet AS hdct on hdct.ma_hop_dong = hd.ma_hop_dong
 join dich_vu_di_kem AS dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
 join dich_vu AS dv on dv.ma_dich_vu = hd.ma_dich_vu
--- 
 where year(ngay_lam_hop_dong) = 2019
-group by month('2019-12-01'); 
+group by month(ngay_lam_hop_dong); 
 
 -- task 10
+-- hiển thị hợp đồng - dv đi kèm
 select hd.ma_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, hd.tien_dat_coc, dvdk.don_vi
 ,sum(dvdk.ma_dich_vu_di_kem) AS so_luong_dvdk
 from hop_dong AS hd
@@ -361,6 +365,12 @@ where year(ngay_lam_hop_dong) between 2017 and 2019);
 SET FOREIGN_KEY_CHECKS=0;
 select *
 from nhan_vien;
+
+-- task 17
+set sql_safe_update = 0;
+update loai_dich_vu set ten_loai_dich_vu = 'Platinum'
+where ten_loai_dich_vu = 'Diamond';
+set sql_safe_update = 1;
 
 -- task 20
 select ma_nhan_vien, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
