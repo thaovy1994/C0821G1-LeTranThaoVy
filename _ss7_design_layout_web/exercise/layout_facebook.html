@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .col-1 {width: 8.33%;}
+            .col-2 {width: 16.66%;}
+            .col-3 {width: 25%;}
+            .col-4 {width: 33.33%;}
+            .col-5 {width: 41.66%;}
+            .col-6 {width: 50%;}
+            .col-7 {width: 58.33%;}
+            .col-8 {width: 66.66%;}
+            .col-9 {width: 75%;}
+            .col-10 {width: 83.33%;}
+            .col-11 {width: 91.66%;}
+            .col-12 {width: 100%;}
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 5px;
+        }
+
+        .row::after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+
+        .left-header {
+            word-spacing: 5px;
+        }
+
+        .center-header {
+            word-spacing: 30px;
+        }
+        .right-header {
+            word-spacing: 30px;
+        }
+        .input-text {
+            width: 200px;
+            height: 35px;
+            border-radius: 15px 15px 15px 15px;
+            background-color: aliceblue;
+        }
+        .input-text-1 {
+            width: 80%;
+            height: 35px;
+            border-radius: 15px 15px 15px 15px;
+            background-color: aliceblue;
+        }
+        .symbol-1 {
+            width: 50px;
+            height: 50px;
+        }
+        .left-content {
+            margin-top: 20px;
+            font-family: Tahoma;
+        }
+        .content {
+            background-color: aliceblue;
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+<!--row 1-->
+<div class="row">
+    <div class="col-3 left-header">
+        <img class="symbol-1"
+             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png"/>
+        <input class="input-text" type="text" placeholder="Tìm kiếm trên Facebook">
+    </div>
+    <div class="col-5 center-header">
+        <img class="symbol-1" alt="home"
+             src="https://w7.pngwing.com/pngs/310/426/png-transparent-computer-icons-symbol-home-screen-white-house-miscellaneous-angle-triangle.png"/>
+        <img class="symbol-1" alt="flag" src="https://i.pinimg.com/originals/77/4b/02/774b0259bfaf6430e0377f2287d13b91.png"/>
+        <img class="symbol-1" alt="watch"src="https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-12/25/Watch-TV-512.png"/>
+        <img class="symbol-1" alt="market"
+             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_xqMkcdYssLq8L7wgiMQmqiekQvXopo3cZw&usqp=CAU"/>
+        <img class="symbol-1" alt="game"
+             src="https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-game-console-game-icon-image_1174023.jpg"/>
+    </div>
+    <div class="col-4 right-header">
+        <img class="symbol-1" src="https://i.pinimg.com/736x/90/c0/ed/90c0ed4a08ea670dbd015972f853bf4a.jpg">
+        <img class="symbol-1" src="https://media.istockphoto.com/vectors/menu-icon-vector-icon-simple-element-illustration-menu-symbol-design-vector-id985549938">
+        <img class="symbol-1" src="https://meditecclinic.com.vn/wp-content/uploads/2019/12/facebook-messenger-icon-1.png">
+        <img class="symbol-1" src="https://cdn5.vectorstock.com/i/thumb-large/81/54/new-notification-icon-vector-19838154.jpg">
+        <img class="symbol-1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNOS2gxTLybmnyFTqDdAeBKuzvTrohRq4cQQ&usqp=CAU">
+    </div>
+</div>
+<!--row 2-->
+<div class="row">
+    <!--colum 1-->
+    <div class="col-3">
+        <div class="row">
+            <div class="col-2">
+                <img class="symbol-1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnDgqNhZdLH0EIr08aGoXSNlreSsjFNZKIsQ&usqp=CAU"/>
+            </div>
+            <div class="col-2 left-content">
+                <span>Bạn bè</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <img class="symbol-1"
+                     src="https://thumbs.dreamstime.com/b/people-vector-icon-group-people-symbol-illustration-businessman-group-logo-multiple-users-silhouette-icon-people-vector-icon-153483842.jpg"/>
+            </div>
+            <div class="col-2 left-content">
+                <span>Nhóm</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <img class="symbol-1"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_xqMkcdYssLq8L7wgiMQmqiekQvXopo3cZw&usqp=CAU"/>
+            </div>
+            <div class="col-2 left-content">
+                <span>Marketplace</span>
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <!--column 2-->
+    <div class="col-1 content">
+        <img class="symbol-1" src="https://i.pinimg.com/736x/90/c0/ed/90c0ed4a08ea670dbd015972f853bf4a.jpg">
+        <input class="input-text-1" type="text" placeholder="Bạn đang nghĩ gì ?">
+    </div>
+    <!--column 3-->
+    <div class="col-10">
+
+    </div>
+</div>
+</body>
+</html>
