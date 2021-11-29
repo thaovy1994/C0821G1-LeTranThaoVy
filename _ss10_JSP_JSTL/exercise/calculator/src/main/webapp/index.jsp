@@ -13,7 +13,7 @@
   </head>
   <body>
   <h1>Simple Calculator</h1>
-  <form method="post" action="/calculate">
+  <form method="post" action="/caculator_Servlet">
     <fieldset>
       <legend>Calculator</legend>
       <table>
