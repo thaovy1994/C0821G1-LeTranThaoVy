@@ -20,6 +20,7 @@ public class ProductRepository implements IProductRepository {
     @Override
     public List<Product> findAll() {
         return new ArrayList<>(productMap.values());           //ép Map sang List, value trả về Collection
+//        return new ArrayList<>();                               //test thử trường hợp List rỗng
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public boolean save(Product product) {
-        return false;
+    public void save(Product product) {
+        productMap.put(product.getProductId(),product);
     }
 }

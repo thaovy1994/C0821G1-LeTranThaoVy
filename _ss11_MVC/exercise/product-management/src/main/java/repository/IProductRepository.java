@@ -7,5 +7,5 @@ import java.util.List;
 public interface IProductRepository {
     List<Product> findAll();            //~showAll
     Product findById(Integer id);
-    boolean save(Product product);      //~update
+    void save(Product product);      //~update
 }

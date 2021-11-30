@@ -9,10 +9,20 @@ import java.util.List;
 
 public class ProductService implements IProductService {
     //gọi obj của bên Repository qua => dùng nguyên lý DI của SOLID
-    private IProductRepository productRepository= new ProductRepository();
+    private IProductRepository productRepository = new ProductRepository();
+
     @Override
     public List<Product> findAll() {
-        return this.productRepository.findAll();
+        try {
+            List<Product> products = productRepository.findAll();
+            if (products.size() == 0) {
+                return null;
+            }
+            return products;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     @Override
@@ -22,6 +32,22 @@ public class ProductService implements IProductService {
 
     @Override
     public boolean save(Product product) {
-        return false;
+        if (checkProduct(product)) {
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean checkProduct(Product product) {
+        if (product.getProductId() < 0) {               //check thêm case xem thử id mới có trùng id cũ ko rồi mới save!
+            return false;
+        }
+        if (!product.getProductName().matches("^[a-z A-z]+$")) {
+            return false;
+        }
+        return true;
     }
 }
