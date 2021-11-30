@@ -14,12 +14,25 @@ import java.io.IOException;
 public class ProductServlet extends HttpServlet {
     private IProductService productService = new ProductService();
 
+    //Post dùng để edit, create, delete
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("productListServlet", this.productService.findAll());
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+        String action = request.getParameter("action");
+
+        if (action == null) {
+            action = "";              //nếu rỗng thì sẽ vào default
+        }
+        switch (action) {            // khi dùng switch thì action ko đc null
+            case "create":
+                request.getRequestDispatcher("create_product.jsp").forward(request, response);
+                break;
+            default:  //load lên cái list
+                request.setAttribute("productListServlet", this.productService.findAll());  //truyền qua index.jsp
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
+        }
     }
 }

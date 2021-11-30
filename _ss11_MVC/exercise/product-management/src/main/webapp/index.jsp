@@ -12,9 +12,9 @@
     <title>$Title$</title>
 </head>
 <body>
-<h2>Danh sách sản phẩm</h2>
+<h2>List Product</h2>
 <%--    click đg dẫn vào servlet (mặc định là get)--%>
-<a href="/product_List">Create new product</a>
+<a href="/product_List?action=create"><button>Create New Product</button></a>
 <table border="1">
     <tr>
         <th>No</th>
