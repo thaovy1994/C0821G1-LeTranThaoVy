@@ -13,9 +13,9 @@ public class ProductRepository implements IProductRepository {
     private static Map<Integer,Product> productMap;
     static {
         productMap = new TreeMap<>();
-        productMap.put(1, new Product(111,"Milk",15000,5));
-        productMap.put(2, new Product(222,"Candy",10000,2));
-        productMap.put(3, new Product(333,"Cupcake",30000,3));
+        productMap.put(1, new Product(1,"Milk",15000,5));
+        productMap.put(2, new Product(2,"Candy",10000,2));
+        productMap.put(3, new Product(3,"Cupcake",30000,3));
     }
     @Override
     public List<Product> findAll() {
@@ -31,5 +31,10 @@ public class ProductRepository implements IProductRepository {
     @Override
     public void save(Product product) {
         productMap.put(product.getProductId(),product);
+    }
+
+    @Override
+    public void delete(Product product) {
+        productMap.remove(product.getProductId());
     }
 }

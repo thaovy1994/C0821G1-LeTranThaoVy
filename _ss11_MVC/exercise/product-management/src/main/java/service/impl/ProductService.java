@@ -36,8 +36,14 @@ public class ProductService implements IProductService {
             productRepository.save(product);
             return true;
         } else {
+            System.out.println("err");
             return false;
         }
+    }
+
+    @Override
+    public void delete(Product product) {
+        productRepository.delete(product);
     }
 
 

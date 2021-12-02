@@ -22,19 +22,19 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-//            case "find":
-//                findbyCountry(request, response);
-//                break;
+            case "find":
+                findbyCountry(request, response);
+                break;
             default:
                 break;
         }
     }
 
     private void findbyCountry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String country = request.getParameter("country");
-//        userService.findByICountry(country);
-//        request.setAttribute("users", userService);
-//        request.getRequestDispatcher("list.jsp").forward(request,response);
+        String country = request.getParameter("countrySearch");
+        userService.findByICountry(country);
+        request.setAttribute("users", userService);
+        request.getRequestDispatcher("list.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,8 +47,8 @@ public class UserServlet extends HttpServlet {
 //            case "create":
 //                showPageCreate(request, response);
 //                break;
-//            case "find":
-//                showUserFound(request, response);
+            case "showFound":
+                showUserFound(request, response);
             default:
                 listUser(request, response);
                 break;
@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("users", users);
         }
         try {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("list.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

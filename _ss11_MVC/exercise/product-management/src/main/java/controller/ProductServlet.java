@@ -24,11 +24,38 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createProduct(request,response);
+                createProduct(request, response);
+                break;
+            case "edit":
+                editProduct(request, response);
+                break;
+            case "delete":
+                deleteProduct(request, response);
                 break;
             default:
                 break;
         }
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        for (Product products : productService.findAll()) {
+            if (id == products.getProductId()) {
+                productService.delete(products);
+            }
+        }
+        getListProduct(request, response);
+    }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int amount = Integer.parseInt(request.getParameter("amount"));
+        Product products = new Product(id, name, price, amount);
+        productService.save(products);
+        request.setAttribute("products", productService.findAll());
+        request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,14 +65,15 @@ public class ProductServlet extends HttpServlet {
         int amount = Integer.parseInt(request.getParameter("amount"));
         Product products = new Product(id, name, price, amount);
         boolean isCreated = productService.save(products);
-        if(isCreated){
-            request.setAttribute("msg","Creating is successful");
-        }else{
-            request.setAttribute("msg","Creating is unsuccessful");
+        if (isCreated) {
+            request.setAttribute("msg", "Creating is successful");
+        } else {
+            request.setAttribute("msg", "Creating is unsuccessful");
         }
         request.setAttribute("products", productService.findAll());    //gọi obj productService để hiển thị list thêm mới
-        request.getRequestDispatcher("list.jsp").forward(request,response);
+        request.getRequestDispatcher("list.jsp").forward(request, response);
     }
+
     //Get dùng để hiển thị danh sách
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -55,24 +83,33 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {            // khi dùng switch thì action ko đc null
             case "create":
-                goPageCreate(request,response);
+                goPage(request, response, "create_product.jsp");
 //                request.getRequestDispatcher("create_product.jsp").forward(request, response);
                 break;
+            case "edit":
+                goPage(request, response, "delete.jsp");
+            case "delete":
+                request.getRequestDispatcher("delete.jsp").forward(request, response);
+                break;
             default:  //load lên cái list
-                getListProduct(request,response);
+                getListProduct(request, response);
                 break;
         }
     }
 
-    private void goPageCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void goPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
+        request.getRequestDispatcher("edit.jsp").forward(request, response);
+//    }
+//
+//    private void goPageCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("create_product.jsp").forward(request, response);
     }
 
     private void getListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = productService.findAll();           //truyền qua index.jsp
-        if(products == null){
+        if (products == null) {
             request.setAttribute("msg", "No data to display ");
-        }else {
+        } else {
             request.setAttribute("products", products);
         }
         request.getRequestDispatcher("list.jsp").forward(request, response);

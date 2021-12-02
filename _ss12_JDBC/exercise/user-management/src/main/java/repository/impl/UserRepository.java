@@ -40,7 +40,7 @@ public class UserRepository implements IUserRepository {
         try {
             PreparedStatement preparedStatement = BaseRepository.connection.prepareStatement
                     ("select id,`name`,email,country from users where country =?");
-            preparedStatement.setInt(1, Integer.parseInt(country));
+            preparedStatement.setString(1,country);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             User userObj;
@@ -56,6 +56,7 @@ public class UserRepository implements IUserRepository {
         }
         return user;
     }
+
 //    @Override
 //    public void insertUser(User user) {
 //

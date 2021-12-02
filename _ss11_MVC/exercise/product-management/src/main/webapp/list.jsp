@@ -20,6 +20,12 @@
 <a href="/product_List?action=create">
     <button>Create New Product</button>
 </a>
+<a href="/product_List?action=edit">
+    <button>Edit Product</button>
+</a>
+<a href="/product_List?action=delete">
+    <button>Delete Product</button>
+</a>
 <%--Chức năng tìm kiếm--%>
 <form method="get" action="/product_List">                  <%--action này ko dùng đc link giống href--%>
     <input type="hidden" name="action" value="search">      <%--thẻ này giúp nút button chạy đc--%>
@@ -28,15 +34,14 @@
 </form>
 <table border="1">
     <tr>
-        <th>No</th>
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
         <th>Amount</th>
     </tr>
-    <c:forEach var="productObj" items="${products}" varStatus="loop">
+    <c:forEach var="productObj" items="${products}" >
         <tr>
-            <td><c:out value="${loop.count}"/></td>
+<%--            <td><c:out value="${loop.count}"/></td>--%>
             <td><c:out value="${productObj.productId}"/></td>
             <td><c:out value="${productObj.productName}"/></td>
             <td><c:out value="${productObj.productPrice}"/></td>
