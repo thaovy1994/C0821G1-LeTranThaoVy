@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet(name = "CustomerServlet ", urlPatterns = "/customers")
 public class CustomerServlet extends HttpServlet {
-    //đối tượng dùng để truy xuất đến dữ liệu.
+
     private CustomerService customerService = new CustomerServiceImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

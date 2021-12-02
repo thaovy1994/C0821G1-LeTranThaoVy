@@ -8,4 +8,5 @@ public interface IProductRepository {
     List<Product> findAll();            //~showAll
     Product findById(Integer id);
     void save(Product product);      //~update
+
 }

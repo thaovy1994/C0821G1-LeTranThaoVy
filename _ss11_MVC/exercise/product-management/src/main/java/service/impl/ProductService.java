@@ -42,12 +42,15 @@ public class ProductService implements IProductService {
 
 
     public boolean checkProduct(Product product) {
-        if (product.getProductId() < 0) {               //check thêm case xem thử id mới có trùng id cũ ko rồi mới save!
+        if (product.getProductId() < 0) {
             return false;
         }
         if (!product.getProductName().matches("^[a-z A-z]+$")) {
             return false;
         }
+////        if (product.getProductId()) {            //check xem thử id mới có trùng id cũ ko rồi mới save!
+//            return false;
+//        }
         return true;
     }
 }
