@@ -19,7 +19,6 @@
 <%--        <a href="/users_list?action=create">Add New User</a>--%>
 <%--    </h2>--%>
 <%--</center>--%>
-
 <div align="center">
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
@@ -29,7 +28,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Country</th>
-            <th>Actions</th>
         </tr>
         <c:forEach var="user" items="${users}">
             <tr>
@@ -37,9 +35,6 @@
                 <td><c:out value="${user.name}"/></td>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.country}"/></td>
-<%--                <td>--%>
-<%--                    <a href="/users_list?action=find&country=${user.country}">Search</a>--%>
-<%--                </td>--%>
             </tr>
         </c:forEach>
     </table>

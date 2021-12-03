@@ -57,8 +57,4 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
-//    @Override
-//    public void insertUser(User user) {
-//
-//    }
 }

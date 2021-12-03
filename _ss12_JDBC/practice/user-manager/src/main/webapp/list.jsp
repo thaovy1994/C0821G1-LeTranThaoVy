@@ -18,6 +18,7 @@
         <a href="/users?action=create">Add New User</a>
     </h2>
 </center>
+<form>
 <div align="center">
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
@@ -42,5 +43,6 @@
         </c:forEach>
     </table>
 </div>
+</form>
 </body>
 </html>

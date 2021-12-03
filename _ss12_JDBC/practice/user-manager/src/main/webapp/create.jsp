@@ -24,6 +24,7 @@
             <caption>
                 <h2>Add New User</h2>
             </caption>
+<%--            <input type="hidden" name="action" value="create">--%>
             <tr>
                 <th>User Name:</th>
                 <td>

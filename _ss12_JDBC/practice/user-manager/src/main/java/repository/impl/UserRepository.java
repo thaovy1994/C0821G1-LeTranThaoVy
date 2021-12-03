@@ -3,10 +3,7 @@ package repository.impl;
 import bean.User;
 import repository.IUserRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,7 @@ public class UserRepository implements IUserRepository {
     private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
             " (?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
+    private static final String SELECT_USER_BY_ID = "select id,`name`,email,country from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
@@ -107,6 +104,113 @@ public class UserRepository implements IUserRepository {
         } finally {
         }
         return rowUpdated;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = null;
+        String query = "{CALL get_user_by_id(?)}";
+        try {
+            CallableStatement callableStatement = BaseRepository.connection.prepareCall(query);
+            callableStatement.setInt(1, id);
+
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                user = new User(id, name, email, country);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return user;
+    }
+
+    @Override
+    public void insertUserStore(User user) throws SQLException {
+        String query = "{CALL insert_user(?,?,?)}";
+
+        // try-with-resource statement will auto close the connection.
+
+        try {
+            CallableStatement callableStatement = BaseRepository.connection.prepareCall(query);
+            callableStatement.setString(1, user.getName());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getCountry());
+
+            System.out.println(callableStatement);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
+    @Override
+    public void addUserTransaction(User user, int[] permision) {
+        Connection connection = BaseRepository.connection;
+        // for insert a new user
+        PreparedStatement pstmt = null;
+
+        // for assign permision to user
+        PreparedStatement pstmtAssignment = null;
+
+        // for getting user id
+        ResultSet rs = null;
+
+        try {
+            // set auto commit to false
+            connection.setAutoCommit(false);
+
+            pstmt = connection.prepareStatement(INSERT_USERS_SQL, Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getCountry());
+
+            int rowAffected = pstmt.executeUpdate();
+            // get user id
+            rs = pstmt.getGeneratedKeys();
+
+            int userId = 0;
+            if (rs.next())
+                userId = rs.getInt(1);
+
+            if (rowAffected == 1) {
+                String sqlPivot = "INSERT INTO user_permision(user_id,permision_id) "
+                        + "VALUES(?,?)";
+                pstmtAssignment = connection.prepareStatement(sqlPivot);
+
+                for (int permisionId : permision) {
+
+                    pstmtAssignment.setInt(1, userId);
+                    pstmtAssignment.setInt(2, permisionId);
+                    pstmtAssignment.executeUpdate();
+                }
+                connection.commit();
+            } else {
+                connection.rollback();
+            }
+
+        } catch (SQLException ex) {
+            // roll back the transaction
+            try {
+                if (connection != null)
+                    connection.rollback();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (pstmtAssignment != null) pstmtAssignment.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printSQLException(SQLException ex) {
