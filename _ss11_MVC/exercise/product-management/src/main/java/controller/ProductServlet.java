@@ -53,7 +53,7 @@ public class ProductServlet extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         int amount = Integer.parseInt(request.getParameter("amount"));
         Product products = new Product(id, name, price, amount);
-        productService.save(products);
+        productService.edit(products);
         request.setAttribute("products", productService.findAll());
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
@@ -63,14 +63,14 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         int amount = Integer.parseInt(request.getParameter("amount"));
-        Product products = new Product(id, name, price, amount);
+        Product products = new Product(id,name, price, amount);
         boolean isCreated = productService.save(products);
         if (isCreated) {
             request.setAttribute("msg", "Creating is successful");
         } else {
             request.setAttribute("msg", "Creating is unsuccessful");
         }
-        request.setAttribute("products", productService.findAll());    //gọi obj productService để hiển thị list thêm mới
+        request.setAttribute("products", productService.findAll());    //hiển thị list thêm mới
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 
@@ -83,34 +83,26 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {            // khi dùng switch thì action ko đc null
             case "create":
-                goPage(request, response, "create_product.jsp");
-//                request.getRequestDispatcher("create_product.jsp").forward(request, response);
+                request.getRequestDispatcher("create_product.jsp").forward(request, response);
                 break;
             case "edit":
-                goPage(request, response, "delete.jsp");
+                request.getRequestDispatcher("edit.jsp").forward(request, response);
+                break;
             case "delete":
                 request.getRequestDispatcher("delete.jsp").forward(request, response);
                 break;
-            default:  //load lên cái list
+            default:
                 getListProduct(request, response);
                 break;
         }
     }
 
-    private void goPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
-        request.getRequestDispatcher("edit.jsp").forward(request, response);
-//    }
-//
-//    private void goPageCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("create_product.jsp").forward(request, response);
-    }
-
     private void getListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = productService.findAll();           //truyền qua index.jsp
-        if (products == null) {
+        List<Product> product = productService.findAll();           //truyền qua index.jsp
+        if (product == null) {
             request.setAttribute("msg", "No data to display ");
         } else {
-            request.setAttribute("products", products);
+            request.setAttribute("products", product);
         }
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }

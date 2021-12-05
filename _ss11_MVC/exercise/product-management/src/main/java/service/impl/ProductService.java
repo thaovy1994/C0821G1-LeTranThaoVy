@@ -26,11 +26,6 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product findById(Integer id) {
-        return null;
-    }
-
-    @Override
     public boolean save(Product product) {
         if (checkProduct(product)) {
             productRepository.save(product);
@@ -39,6 +34,11 @@ public class ProductService implements IProductService {
             System.out.println("err");
             return false;
         }
+    }
+
+    @Override
+    public void edit(Product product) {
+        productRepository.edit(product);
     }
 
     @Override
@@ -54,9 +54,6 @@ public class ProductService implements IProductService {
         if (!product.getProductName().matches("^[a-z A-z]+$")) {
             return false;
         }
-////        if (product.getProductId()) {            //check xem thử id mới có trùng id cũ ko rồi mới save!
-//            return false;
-//        }
         return true;
     }
 }

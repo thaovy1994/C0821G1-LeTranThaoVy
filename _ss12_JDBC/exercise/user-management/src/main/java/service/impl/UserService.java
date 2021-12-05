@@ -25,8 +25,20 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByICountry(String country) {
-            return null;
-        }
-
+    public void create(User user) {
+        repository.create(user);
     }
+
+    @Override
+    public List<User> findByCountry(String country) {
+        List<User> user = repository.findByCountry(country);
+        return user;
+    }
+
+    @Override
+    public List<User> arrangeByName() {
+        List<User> userList = repository.arrangeByName();
+        return userList;
+    }
+
+}

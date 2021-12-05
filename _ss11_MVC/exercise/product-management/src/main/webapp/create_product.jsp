@@ -13,7 +13,6 @@
 <body>
 <h2>Create Product</h2>
 <form action="/product_List" method="post">         <%--ko thêm action thì nó sẽ auto gởi action cũ ở bên doGet--%>
-<%--    ko thể gán trên link nên tạo 1 biến (ko hiển thị cho user:--%>
     <input type="hidden" name="action" value="create">
     <div>New Product</div>
     <div>
@@ -29,7 +28,7 @@
         <input type="text" name="amount" placeholder="product amount">
     </div>
     <div>
-        <input type="submit" value="Create">
+        <input type="submit" value="create">
     </div>
 </form>
 </body>

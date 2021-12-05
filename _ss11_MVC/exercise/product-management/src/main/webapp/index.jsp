@@ -21,7 +21,7 @@
         <th>Price</th>
         <th>Amount</th>
     </tr>
-    <c:forEach var="productObj" items="${products}" varStatus="loop">
+    <c:forEach var="productObj" items="${product}" varStatus="loop">
         <tr>
             <td><c:out value="${loop.count}"/></td>
             <td><c:out value="${productObj.productId}"/></td>

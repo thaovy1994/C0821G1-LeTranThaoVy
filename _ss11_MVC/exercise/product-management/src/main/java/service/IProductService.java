@@ -5,8 +5,11 @@ import bean.Product;
 import java.util.List;
 
 public interface IProductService {
-    List<Product> findAll();            //~showAll
-    Product findById(Integer id);
-    boolean save(Product product);      //~update
+    List<Product> findAll();
+
+    boolean save(Product product);
+
+    void edit(Product product);
+
     void delete(Product product);
 }

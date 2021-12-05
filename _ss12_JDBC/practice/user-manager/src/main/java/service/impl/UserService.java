@@ -12,7 +12,7 @@ public class UserService implements IUserService {
     private IUserRepository repository = new UserRepository();
     @Override
     public void insertUser(User user) throws SQLException {
-
+        repository.insertUser(user);
     }
 
     @Override

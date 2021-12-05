@@ -5,8 +5,11 @@ import bean.User;
 import java.util.List;
 
 public interface IUserService {
-    public List<User> showUsers();
+    List<User> showUsers();
 
-    public User findByICountry(String country);
+    void create(User user);
 
+    List<User> findByCountry(String country);
+
+    List<User> arrangeByName();
 }

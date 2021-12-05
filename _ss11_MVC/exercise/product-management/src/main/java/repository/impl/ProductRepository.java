@@ -24,12 +24,12 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findById(Integer id) {
-        return null;
+    public void save(Product product) {
+        productMap.put(product.getProductId(),product);
     }
 
     @Override
-    public void save(Product product) {
+    public void edit(Product product) {
         productMap.put(product.getProductId(),product);
     }
 

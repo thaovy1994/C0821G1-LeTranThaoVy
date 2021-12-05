@@ -12,18 +12,29 @@
     <title>User Management Application</title>
 </head>
 <body>
-<c:out value="${msg}"></c:out>
-<%--<center>--%>
-<%--    <h1>User Management</h1>--%>
-<%--    <h2>--%>
-<%--        <a href="/users_list?action=create">Add New User</a>--%>
-<%--    </h2>--%>
-<%--</center>--%>
+<div align="center">
+    <c:out value="${msg}"></c:out>
+</div>
+<h2 align="center">List of Users</h2>
+<br>
+<div align="center">
+    <a href="/users_list?action=create">
+        <button>Create New User</button>
+    </a>
+</div>
+<form align="center" method="post" action="/users_list">
+        <input type="hidden" name="action" value="arrange">
+        <button>Arrange</button>
+    </a>
+</form>
+<form align="center" method="post" action="/users_list">
+    <input type="hidden" name="action" value="find">
+    <input type="text" name="country" placeholder="country name">
+    <button>Search</button>
+</form>
 <div align="center">
     <table border="1" cellpadding="5">
-        <caption><h2>List of Users</h2></caption>
-        <a href="/users_list?action=find&country=${user.country}">Search</a>
-        <tr>
+        <tr style="text-align: center">
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
