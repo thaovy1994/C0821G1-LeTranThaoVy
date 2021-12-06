@@ -3,8 +3,6 @@
 <html>
 <head>
     <title>Employee List</title>
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-    <%--          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">--%>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -15,13 +13,10 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/employee_interaction.jsp?action=create&">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Employee</a>
+                        <a class="nav-link" href="/employee_interaction.jsp">Employee</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Customer</a>

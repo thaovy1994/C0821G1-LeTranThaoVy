@@ -8,7 +8,8 @@ import service.IEmployeeService;
 import java.util.List;
 
 public class EmployeeService implements IEmployeeService {
-    IEmployeeRepository repository = new EmployeeRepository();
+    private IEmployeeRepository repository = new EmployeeRepository();
+
     @Override
     public List<Employee> showEmployee() {
         try {
@@ -30,7 +31,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void createEmployee(Employee employee) {
-
+        repository.createEmployee(employee);
     }
 
     @Override
