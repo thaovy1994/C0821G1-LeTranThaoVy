@@ -1,10 +1,10 @@
-package repository;
+package service;
 
 import bean.Employee;
 
 import java.util.List;
 
-public interface IEmployeeRepository {
+public interface IEmployeeService {
     List<Employee> showEmployee();
 
     List<Employee> searchEmployee(Employee employee);
