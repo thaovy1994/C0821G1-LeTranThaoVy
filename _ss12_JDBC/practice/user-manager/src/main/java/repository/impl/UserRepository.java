@@ -97,16 +97,6 @@ public class UserRepository implements IUserRepository {
         return rowUpdated;
     }
 
-    @Override
-    public User getUserById(int id) {
-        return null;
-    }
-
-    @Override
-    public void insertUserStore(User user) throws SQLException {
-
-    }
-
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

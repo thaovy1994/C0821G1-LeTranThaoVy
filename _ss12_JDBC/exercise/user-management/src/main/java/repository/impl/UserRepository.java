@@ -18,9 +18,8 @@ public class UserRepository implements IUserRepository {
             Statement statement = BaseRepository.connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select id,`name`,email,country\n" + "from users");
 
-            User userObj;
             while (resultSet.next()) {
-                userObj = new User();
+                User userObj = new User();
                 userObj.setId(Integer.parseInt(resultSet.getString("id")));
                 userObj.setName(resultSet.getString("name"));
                 userObj.setEmail(resultSet.getString("email"));
@@ -59,9 +58,8 @@ public class UserRepository implements IUserRepository {
             preparedStatement.setString(1, country);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            User userObj;
             while (resultSet.next()) {
-                userObj = new User();
+                User userObj = new User();
                 userObj.setId(Integer.parseInt(resultSet.getString("id")));
                 userObj.setName(resultSet.getString("name"));
                 userObj.setEmail(resultSet.getString("email"));

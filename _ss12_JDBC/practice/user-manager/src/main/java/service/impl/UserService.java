@@ -17,13 +17,22 @@ public class UserService implements IUserService {
 
     @Override
     public User selectUser(int id) {
-        return null;
+        User user = repository.selectUser(id);
+        return user;
     }
 
     @Override
     public List<User> selectAllUsers() {
-        List<User> userList = repository.selectAllUsers();
-        return userList;
+        try {
+            List<User> userList = repository.selectAllUsers();
+            if (userList.size() == 0) {
+                return null;
+            }
+            return userList;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     @Override
@@ -34,15 +43,5 @@ public class UserService implements IUserService {
     @Override
     public boolean updateUser(User user) throws SQLException {
         return false;
-    }
-
-    @Override
-    public User getUserById(int id) {
-        return null;
-    }
-
-    @Override
-    public void insertUserStore(User user) throws SQLException {
-
     }
 }

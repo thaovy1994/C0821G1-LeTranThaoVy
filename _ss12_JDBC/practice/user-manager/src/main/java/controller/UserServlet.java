@@ -64,15 +64,6 @@ public class UserServlet extends HttpServlet {
         request.getRequestDispatcher("edit.jsp").forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-//        User existingUser = userService.selectUser(id);
-        User existingUser = userService.getUserById(id);
-        request.setAttribute("user", existingUser);
-        request.getRequestDispatcher("user/edit.jsp").forward(request, response);
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -99,10 +90,18 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        List<User> listUser = userService.selectAllUsers();
-        request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("list.jsp").forward(request, response);
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        User existingUser = userService.selectUser(id);
+        request.setAttribute("user", existingUser);
+        request.getRequestDispatcher("user/edit.jsp").forward(request, response);
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
@@ -110,6 +109,12 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         userService.deleteUser(id);
 
+        List<User> listUser = userService.selectAllUsers();
+        request.setAttribute("listUser", listUser);
+        request.getRequestDispatcher("list.jsp").forward(request, response);
+    }
+
+    private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         List<User> listUser = userService.selectAllUsers();
         request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("list.jsp").forward(request, response);
