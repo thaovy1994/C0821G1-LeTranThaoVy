@@ -16,6 +16,7 @@ public class EmployeeRepository implements IEmployeeRepository {
         try {
             PreparedStatement statement = BaseRepository.connection.prepareStatement("SELECT * FROM nhan_vien");
             ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
                 Employee employeeObj = new Employee();
                 employeeObj.setEmployee_id(Integer.parseInt(resultSet.getString("ma_nhan_vien")));

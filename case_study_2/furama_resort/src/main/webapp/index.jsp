@@ -16,16 +16,16 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee_interaction.jsp">Employee</a>
+                        <a class="nav-link" href="/index_employee">Employee</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
+                        <a class="nav-link" href="/index">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Service</a>
+                        <a class="nav-link" href="/service_interaction">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contract</a>
+                        <a class="nav-link" href="/contract_interaction">Contract</a>
                     </li>
                 </ul>
                 <form class="d-flex">
