@@ -36,11 +36,11 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void deleteEmployee(Employee employee) {
-
+        repository.deleteEmployee(employee);
     }
 
     @Override
     public void editEmployee(Employee employee) {
-
+        repository.editEmployee(employee);
     }
 }

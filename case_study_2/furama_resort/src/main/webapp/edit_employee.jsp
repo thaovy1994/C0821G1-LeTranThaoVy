@@ -1,8 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Dell
+  Date: 12/7/2021
+  Time: 3:02 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Create Employee</title>
+    <title>Edit Employee</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -13,7 +20,7 @@
     </div>
 </div>
 <form method="post">
-    <input type="hidden" name="action" value="create">
+    <input type="hidden" name="action" value="edit">
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="id" placeholder="id" class="form-control" aria-describedby="passwordHelpInline">
@@ -71,7 +78,7 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-        <input type="submit" value="Add New">
+            <input type="submit" value="Edit">
         </div>
     </div>
 </form>

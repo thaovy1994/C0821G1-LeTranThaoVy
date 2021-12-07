@@ -19,13 +19,13 @@
                         <a class="nav-link" href="/index_employee">Employee</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index">Customer</a>
+                        <a class="nav-link" href="/index_customer">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/service_interaction">Service</a>
+                        <a class="nav-link" href="/index_service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contract_interaction">Contract</a>
+                        <a class="nav-link" href="/index_contract">Contract</a>
                     </li>
                 </ul>
                 <form class="d-flex">

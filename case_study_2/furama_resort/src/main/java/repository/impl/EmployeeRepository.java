@@ -70,11 +70,37 @@ public class EmployeeRepository implements IEmployeeRepository {
 
     @Override
     public void deleteEmployee(Employee employee) {
+        try {
+            PreparedStatement statement = BaseRepository.connection.prepareStatement("delete from nhan_vien where ma_nhan_vien=?");
+            statement.setInt(1, employee.getEmployee_id());
 
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void editEmployee(Employee employee) {
+        try {
+            PreparedStatement statement = BaseRepository.connection.prepareStatement
+                    ("update nhan_vien set ho_ten=?,ngay_sinh=?,so_cmnd=?,luong=?,so_dien_thoai=?,email=?,dia_chi=?,ma_vi_tri=?,ma_trinh_do=?,ma_bo_phan=? " +
+                            "where ma_nhan_vien=?");
+            statement.setInt(1, employee.getEmployee_id());
+            statement.setString(2, employee.getEmployee_name());
+            statement.setString(3, employee.getEmployee_birthday());
+            statement.setString(4, employee.getEmployee_id_card());
+            statement.setDouble(5, employee.getEmployee_salary());
+            statement.setString(6, employee.getEmployee_phone());
+            statement.setString(7, employee.getEmployee_email());
+            statement.setString(8, employee.getEmployee_address());
+            statement.setInt(9, employee.getPosition_id());
+            statement.setInt(10, employee.getEducation_degree_id());
+            statement.setInt(11, employee.getDivision_id());
 
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

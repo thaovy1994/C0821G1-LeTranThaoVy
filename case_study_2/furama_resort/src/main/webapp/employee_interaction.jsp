@@ -22,10 +22,10 @@
                         <a class="nav-link" href="/index_employee?action=create">Create</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index?action=delete">Delete</a>
+                        <a class="nav-link" href="/index_employee?action=delete">Delete</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index?action=edit">Edit</a>
+                        <a class="nav-link" href="/index_employee?action=edit">Edit</a>
                     </li>
                 </ul>
                 <form class="d-flex" method="post">
