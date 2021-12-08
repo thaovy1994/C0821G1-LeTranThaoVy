@@ -40,11 +40,11 @@ public class HouseServlet extends HttpServlet {
         int type_rent = Integer.parseInt(request.getParameter("type_rent"));
         String standard = request.getParameter("standard");
         String description = request.getParameter("description");
-        int floor = Integer.parseInt("floor");
+        int floor = Integer.parseInt(request.getParameter("floor"));
         House house = new House(id, name, area, cost, amount_person, type_rent, standard, description, floor);
         service.createHouse(house);
         request.setAttribute("house", service.showHouse());
-        request.getRequestDispatcher("service_interaction").forward(request, response);
+        request.getRequestDispatcher("house_interaction.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

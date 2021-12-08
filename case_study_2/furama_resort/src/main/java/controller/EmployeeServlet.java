@@ -43,7 +43,7 @@ public class EmployeeServlet extends HttpServlet {
     private void searchEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         request.setAttribute("employee", service.searchEmployee(name));
-        request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
     }
 
     private void editEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,7 +61,7 @@ public class EmployeeServlet extends HttpServlet {
         Employee employee = new Employee(id, name, birthday, idCard, salary, phone, email, address, degree, position, division);
         service.editEmployee(employee);
         request.setAttribute("employee", service.showEmployee());
-        request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
     }
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,7 +72,7 @@ public class EmployeeServlet extends HttpServlet {
             }
         }
         request.setAttribute("employee", service.showEmployee());
-        request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
     }
 
     private void createEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -90,7 +90,7 @@ public class EmployeeServlet extends HttpServlet {
         Employee employee = new Employee(id, name, birthday, idCard, salary, phone, email, address, degree, position, division);
         service.createEmployee(employee);
         request.setAttribute("employee", service.showEmployee());
-        request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,13 +100,13 @@ public class EmployeeServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                request.getRequestDispatcher("create_employee.jsp").forward(request, response);
+                request.getRequestDispatcher("employee/create_employee.jsp").forward(request, response);
                 break;
             case "delete":
-                request.getRequestDispatcher("delete_employee.jsp").forward(request, response);
+                request.getRequestDispatcher("employee/delete_employee.jsp").forward(request, response);
                 break;
             case "edit":
-                request.getRequestDispatcher("edit_employee.jsp").forward(request, response);
+                request.getRequestDispatcher("employee/edit_employee.jsp").forward(request, response);
                 break;
             default:
                 getList(request, response);
@@ -122,7 +122,7 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("employee", employeeList);
         }
         try {
-            request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
+            request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

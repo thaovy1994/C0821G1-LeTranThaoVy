@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Customer</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <div class="row">

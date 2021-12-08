@@ -26,15 +26,15 @@
                         <a class="nav-link active" aria-current="page" href="/index.jsp">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index_house?action=create">Create</a>
+                        <a class="nav-link" href="/index_service?action=create">Create</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="post">
-                    <input type="hidden" name="action" value="search">
-                    <input class="form-control me-2" type="search" aria-label="Search" name="name"
-                           placeholder="name need to find">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+<%--                <form class="d-flex" method="post">--%>
+<%--                    <input type="hidden" name="action" value="search">--%>
+<%--                    <input class="form-control me-2" type="search" aria-label="Search" name="name"--%>
+<%--                           placeholder="name need to find">--%>
+<%--                    <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--                </form>--%>
             </div>
         </div>
     </nav>

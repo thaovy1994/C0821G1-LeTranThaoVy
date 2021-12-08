@@ -2,15 +2,15 @@
   Created by IntelliJ IDEA.
   User: Dell
   Date: 12/8/2021
-  Time: 11:18 AM
+  Time: 4:25 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Customer</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>House</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <div class="row">
@@ -33,37 +33,37 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="birthday" placeholder="birthday" class="form-control">
+            <input type="text" name="area" placeholder="area" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="idCard" placeholder="gender" class="form-control">
+            <input type="text" name="cost" placeholder="cost" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="salary" placeholder="idCard" class="form-control">
+            <input type="text" name="amount_person" placeholder="amount_person" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="phone" placeholder="phone" class="form-control">
+            <input type="text" name="type_rent" placeholder="type_rent" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="email" placeholder="email" class="form-control">
+            <input type="text" name="standard" placeholder="standard" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="address" placeholder="address" class="form-control">
+            <input type="text" name="description" placeholder="description" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="degree" placeholder="type_customer" class="form-control">
+            <input type="text" name="floor" placeholder="floor" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">

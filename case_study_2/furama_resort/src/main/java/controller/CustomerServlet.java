@@ -42,7 +42,7 @@ public class CustomerServlet extends HttpServlet {
     private void searchCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         request.setAttribute("customer", service.searchCustomer(name));
-        request.getRequestDispatcher("customer_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("customer/customer_interaction.jsp").forward(request, response);
     }
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +58,7 @@ public class CustomerServlet extends HttpServlet {
         Customer customer = new Customer(id, name, birthday, idCard,gender,phone, email, address, type_customer);
         service.editCustomer(customer);
         request.setAttribute("customer", service.showCustomer());
-        request.getRequestDispatcher("customer_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("customer/customer_interaction.jsp").forward(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +69,7 @@ public class CustomerServlet extends HttpServlet {
             }
         }
         request.setAttribute("customer", service.showCustomer());
-        request.getRequestDispatcher("customer_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("customer/customer_interaction.jsp").forward(request, response);
     }
 
     private void createCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,7 +85,7 @@ public class CustomerServlet extends HttpServlet {
         Customer customer = new Customer(id, name, birthday, idCard,gender,phone, email, address, type_customer);
         service.createCustomer(customer);
         request.setAttribute("customer", service.showCustomer());
-        request.getRequestDispatcher("customer_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("customer/customer_interaction.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -95,13 +95,13 @@ public class CustomerServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                request.getRequestDispatcher("create_customer.jsp").forward(request, response);
+                request.getRequestDispatcher("customer/create_customer.jsp").forward(request, response);
                 break;
             case "delete":
-                request.getRequestDispatcher("delete_customer.jsp").forward(request, response);
+                request.getRequestDispatcher("customer/delete_customer.jsp").forward(request, response);
                 break;
             case "edit":
-                request.getRequestDispatcher("edit_customer.jsp").forward(request, response);
+                request.getRequestDispatcher("customer/edit_customer.jsp").forward(request, response);
                 break;
             default:
                 getList(request, response);
@@ -117,7 +117,7 @@ public class CustomerServlet extends HttpServlet {
             request.setAttribute("customer", customerList);
         }
         try {
-            request.getRequestDispatcher("customer_interaction.jsp").forward(request, response);
+            request.getRequestDispatcher("customer/customer_interaction.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
