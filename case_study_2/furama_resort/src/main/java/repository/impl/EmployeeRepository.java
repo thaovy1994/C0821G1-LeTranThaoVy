@@ -40,8 +40,33 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public List<Employee> searchEmployee(Employee employee) {
-        return null;
+    public List<Employee> searchEmployee(String employee_name) {
+        List<Employee> employeeList = new ArrayList<>();
+        try {
+            PreparedStatement statement = BaseRepository.connection.prepareStatement("select * from nhan_vien where ho_ten=?");
+            statement.setString(1, employee_name);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Employee employeeObj = new Employee();
+                employeeObj.setEmployee_id(Integer.parseInt(resultSet.getString("ma_nhan_vien")));
+                employeeObj.setEmployee_name(resultSet.getString("ho_ten"));
+                employeeObj.setEmployee_birthday(resultSet.getString("ngay_sinh"));
+                employeeObj.setEmployee_id_card(resultSet.getString("so_cmnd"));
+                employeeObj.setEmployee_salary(Double.parseDouble(resultSet.getString("luong")));
+                employeeObj.setEmployee_phone(resultSet.getString("so_dien_thoai"));
+                employeeObj.setEmployee_email(resultSet.getString("email"));
+                employeeObj.setEmployee_address(resultSet.getString("dia_chi"));
+                employeeObj.setPosition_id(Integer.parseInt(resultSet.getString("ma_vi_tri")));
+                employeeObj.setEducation_degree_id(Integer.parseInt(resultSet.getString("ma_trinh_do")));
+                employeeObj.setDivision_id(Integer.parseInt(resultSet.getString("ma_bo_phan")));
+
+                employeeList.add(employeeObj);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return employeeList;
     }
 
     @Override

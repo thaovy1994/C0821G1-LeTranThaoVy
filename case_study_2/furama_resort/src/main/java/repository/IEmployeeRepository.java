@@ -7,7 +7,7 @@ import java.util.List;
 public interface IEmployeeRepository {
     List<Employee> showEmployee();
 
-    List<Employee> searchEmployee(Employee employee);
+    List<Employee> searchEmployee(String employee_name);
 
     void createEmployee(Employee employee);
 

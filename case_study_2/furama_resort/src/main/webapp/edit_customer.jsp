@@ -1,9 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Dell
+  Date: 12/8/2021
+  Time: 1:47 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Create Employee</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Customer</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <div class="row">
@@ -13,7 +20,7 @@
     </div>
 </div>
 <form method="post">
-    <input type="hidden" name="action" value="create">
+    <input type="hidden" name="action" value="edit">
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="id" placeholder="id" class="form-control" aria-describedby="passwordHelpInline">
@@ -31,12 +38,12 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="idCard" placeholder="idCard" class="form-control">
+            <input type="text" name="idCard" placeholder="gender" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="salary" placeholder="salary" class="form-control">
+            <input type="text" name="salary" placeholder="idCard" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
@@ -56,22 +63,12 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="degree" placeholder="degree" class="form-control">
+            <input type="text" name="degree" placeholder="type_customer" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="position" placeholder="position" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center">
-        <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="division" placeholder="division" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center">
-        <div class="col-lg-auto ms-lg-5">
-        <input type="submit" value="Add New">
+            <input type="submit" value="Edit">
         </div>
     </div>
 </form>

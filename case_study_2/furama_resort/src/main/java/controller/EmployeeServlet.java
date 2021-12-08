@@ -29,14 +29,21 @@ public class EmployeeServlet extends HttpServlet {
                 deleteEmployee(request, response);
                 break;
             case "edit":
-                editEmployee(request,response);
+                editEmployee(request, response);
                 break;
             case "search":
+                searchEmployee(request, response);
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void searchEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        request.setAttribute("employee", service.searchEmployee(name));
+        request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);
     }
 
     private void editEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,7 +58,7 @@ public class EmployeeServlet extends HttpServlet {
         int degree = Integer.parseInt(request.getParameter("degree"));
         int position = Integer.parseInt(request.getParameter("position"));
         int division = Integer.parseInt(request.getParameter("division"));
-        Employee employee = new Employee(id,name,birthday,idCard,salary,phone,email,address,degree,position,division);
+        Employee employee = new Employee(id, name, birthday, idCard, salary, phone, email, address, degree, position, division);
         service.editEmployee(employee);
         request.setAttribute("employee", service.showEmployee());
         request.getRequestDispatcher("employee_interaction.jsp").forward(request, response);

@@ -1,19 +1,17 @@
 package repository;
 
 import bean.Customer;
-import bean.Employee;
 
 import java.util.List;
 
 public interface ICustomerRepository {
-    List<Employee> showCustomer();
+    List<Customer> showCustomer();
 
-    List<Employee> searchCustomer(Customer customer);
+    List<Customer> searchCustomer(String customer_name);
 
     void createCustomer(Customer customer);
 
     void deleteCustomer(Customer customer);
 
     void editCustomer(Customer customer);
-}
 }
