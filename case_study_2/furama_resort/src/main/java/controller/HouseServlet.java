@@ -44,7 +44,7 @@ public class HouseServlet extends HttpServlet {
         House house = new House(id, name, area, cost, amount_person, type_rent, standard, description, floor);
         service.createHouse(house);
         request.setAttribute("house", service.showHouse());
-        request.getRequestDispatcher("house_interaction.jsp").forward(request, response);
+        request.getRequestDispatcher("service/house_interaction.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +54,7 @@ public class HouseServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                request.getRequestDispatcher("create_house.jsp").forward(request, response);
+                request.getRequestDispatcher("service/create_house.jsp").forward(request, response);
                 break;
             default:
                 getList(request, response);
@@ -70,7 +70,7 @@ public class HouseServlet extends HttpServlet {
             request.setAttribute("house", houseList);
         }
         try {
-            request.getRequestDispatcher("house_interaction.jsp").forward(request, response);
+            request.getRequestDispatcher("service/house_interaction.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

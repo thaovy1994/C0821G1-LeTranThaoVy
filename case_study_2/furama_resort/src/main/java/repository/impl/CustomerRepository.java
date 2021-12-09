@@ -39,9 +39,10 @@ public class CustomerRepository implements ICustomerRepository {
     @Override
     public List<Customer> searchCustomer(String customer_name) {
         List<Customer> customerList = new ArrayList<>();
+        String new_name = "%" + customer_name + "%";
         try {
-            PreparedStatement statement = BaseRepository.connection.prepareStatement("select * from khach_hang where ho_ten=?");
-            statement.setString(1, customer_name);
+            PreparedStatement statement = BaseRepository.connection.prepareStatement("select * from khach_hang where ho_ten like ?");
+            statement.setString(1, new_name);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -55,7 +56,6 @@ public class CustomerRepository implements ICustomerRepository {
                 customerObj.setCustomer_email(resultSet.getString("email"));
                 customerObj.setCustomer_address(resultSet.getString("dia_chi"));
                 customerObj.setCustomer_type_id(Integer.parseInt(resultSet.getString("ma_loai_khach")));
-
 
                 customerList.add(customerObj);
             }

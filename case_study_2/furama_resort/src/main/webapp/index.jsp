@@ -7,9 +7,12 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-lg-1">
+    <div class="col-lg-6">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzVHX-tqV7TnaGm1NeHANiMX1dcGm4bfHrQ&usqp=CAU"
              width="100px">
+    </div>
+    <div class="col-lg-6">
+
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">

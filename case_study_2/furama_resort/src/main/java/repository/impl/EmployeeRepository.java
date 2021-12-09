@@ -42,9 +42,10 @@ public class EmployeeRepository implements IEmployeeRepository {
     @Override
     public List<Employee> searchEmployee(String employee_name) {
         List<Employee> employeeList = new ArrayList<>();
+        String new_name = "%" + employee_name + "%";
         try {
-            PreparedStatement statement = BaseRepository.connection.prepareStatement("select * from nhan_vien where ho_ten=?");
-            statement.setString(1, employee_name);
+            PreparedStatement statement = BaseRepository.connection.prepareStatement("select * from nhan_vien where ho_ten like ?");
+            statement.setString(1, new_name);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
