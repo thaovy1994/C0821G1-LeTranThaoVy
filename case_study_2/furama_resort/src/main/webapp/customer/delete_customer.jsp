@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Dell
-  Date: 12/8/2021
-  Time: 1:51 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -22,28 +15,20 @@
              width="100px">
     </div>
 </div>
-    <form method="post">
-        <input type="hidden" name="action" value="delete">
-        <div class="row g-3 align-items-center">
-            <div class="col-lg-auto ms-lg-5">
-                <input type="text" name="id" placeholder="id" class="form-control"
-                       aria-describedby="passwordHelpInline">
-            </div>
-        </div>
-        <div class="row g-3 align-items-center">
-            <div class="col-lg-auto ms-lg-5">
-                <%--            <input type="submit" value="Delete">--%>
-                <%--            <input type="submit" value="delete" class="btn btn-primary" data-bs-toggle="modal"--%>
-                <%--                                   data-bs-target="#myModal">--%>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                    Delete
-                </button>
-            </div>
-        </div>
-    </form>
-    <!-- Modal -->
+<div class="row g-3 align-items-center">
+        <%--            data-bs-target="#myModal" dùng để xác định popup nào được gọi--%>
+        <%--            data-toggle="modal" là lệnh mở một Modal Popup trong Bootstrap--%>
+        <%--                có thể use button or thẻ <a> or <span> để gọi popup nhưng phải luôn có 2 thuộc tính ở trên.--%>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Delete
+        </button>
+</div>
+<!-- Modal -->
+<form method="post">
     <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <%--Class fade là hiệu ứng transition với fade in và fade out.--%>
+        <%--Thuộc tính role="dialog" hiển thị popup dạng dialog--%>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,47 +36,30 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="text" name="id" placeholder="id" class="form-control">
                     <p>Are you sure to delete customer?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
+                    <%--                có thể sử dụng <button>, <a> hoặc <span> nhưng phải có data-bs-dismiss="modal" để close--%>
+                    <%--                có thể thêm class="close"--%>
+                    <input type="hidden" name="action" value="delete">
+                    <button type="submit" name="delete" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         </div>
     </div>
-    <%--    <!-- Button trigger modal -->--%>
-    <%--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
-    <%--        Launch demo modal--%>
-    <%--    </button>--%>
-
-    <%--    <!-- Modal -->--%>
-    <%--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-    <%--        <div class="modal-dialog">--%>
-    <%--            <div class="modal-content">--%>
-    <%--                <div class="modal-header">--%>
-    <%--                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>--%>
-    <%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-    <%--                </div>--%>
-    <%--                <div class="modal-body">--%>
-    <%--                    ...--%>
-    <%--                </div>--%>
-    <%--                <div class="modal-footer">--%>
-    <%--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
-    <%--                    <button type="button" class="btn btn-primary">Save changes</button>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </div>--%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#myBtn").click(function () {
-                $("#myModal").modal();
-            });
-        });
-    </script>
-
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    // $(document).ready(function () {
+    //     $("#myBtn").click(function () {
+    //         $("#myModal").modal();
+    //     });
+    // });
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+    myModal.target()
+</script>
 </body>
 </html>

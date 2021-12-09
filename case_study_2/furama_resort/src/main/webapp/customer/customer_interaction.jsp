@@ -33,7 +33,10 @@
                         <a class="nav-link" href="/index_customer?action=create">Create</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index_customer?action=delete">Delete</a>
+                        <%--<a class="nav-link" href="/index_customer?action=delete">Delete</a>--%>
+                        <button type="button" class="nav-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                            Delete
+                        </button>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/index_customer?action=edit">Edit</a>
@@ -109,5 +112,33 @@
         </div>
     </div>
 </form>
+<form method="post">
+    <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="id" placeholder="id" class="form-control">
+                    <p>Are you sure to delete customer?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="delete" class="btn btn-primary">Delete</button>
+                    <input type="hidden" name="action" value="delete">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+    myModal.target()
+</script>
 </body>
 </html>

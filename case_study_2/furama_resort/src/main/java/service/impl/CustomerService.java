@@ -36,11 +36,11 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void deleteCustomer(Customer customer) {
-        if(checkCustomer(customer)){
+//        if(checkCustomer(customer)){
             repository.deleteCustomer(customer);
-        }else{
-            System.out.println("error");
-        }
+//        }else{
+//            System.out.println("error");
+//        }
     }
 
     @Override

@@ -97,9 +97,9 @@ public class CustomerServlet extends HttpServlet {
             case "create":
                 request.getRequestDispatcher("customer/create_customer.jsp").forward(request, response);
                 break;
-            case "delete":
-                request.getRequestDispatcher("customer/delete_customer.jsp").forward(request, response);
-                break;
+//            case "delete":
+//                request.getRequestDispatcher("customer/delete_customer.jsp").forward(request, response);
+//                break;
             case "edit":
                 request.getRequestDispatcher("customer/edit_customer.jsp").forward(request, response);
                 break;
