@@ -11,8 +11,7 @@
 <head>
     <title>Customer</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body class="bg-image"
       style="
@@ -23,26 +22,28 @@
              width="100px">
     </div>
 </div>
-<div>
-<form method="post">
-    <input type="hidden" name="action" value="delete">
-    <div class="row g-3 align-items-center">
-        <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="id" placeholder="id" class="form-control" aria-describedby="passwordHelpInline">
+    <form method="post">
+        <input type="hidden" name="action" value="delete">
+        <div class="row g-3 align-items-center">
+            <div class="col-lg-auto ms-lg-5">
+                <input type="text" name="id" placeholder="id" class="form-control"
+                       aria-describedby="passwordHelpInline">
+            </div>
         </div>
-    </div>
-    <div class="row g-3 align-items-center">
-        <div class="col-lg-auto ms-lg-5">
-            <%--            <input type="submit" value="Delete">--%>
-            <input type="submit" value="delete" class="btn btn-primary" data-bs-toggle="modal"
-                                   data-bs-target="#myModal">
-<%--                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">--%>
-<%--                    Delete--%>
-<%--                </button>--%>
+        <div class="row g-3 align-items-center">
+            <div class="col-lg-auto ms-lg-5">
+                <%--            <input type="submit" value="Delete">--%>
+                <%--            <input type="submit" value="delete" class="btn btn-primary" data-bs-toggle="modal"--%>
+                <%--                                   data-bs-target="#myModal">--%>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Delete
+                </button>
+            </div>
         </div>
-    </div>
+    </form>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -59,14 +60,38 @@
             </div>
         </div>
     </div>
+    <%--    <!-- Button trigger modal -->--%>
+    <%--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
+    <%--        Launch demo modal--%>
+    <%--    </button>--%>
+
+    <%--    <!-- Modal -->--%>
+    <%--    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+    <%--        <div class="modal-dialog">--%>
+    <%--            <div class="modal-content">--%>
+    <%--                <div class="modal-header">--%>
+    <%--                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>--%>
+    <%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+    <%--                </div>--%>
+    <%--                <div class="modal-body">--%>
+    <%--                    ...--%>
+    <%--                </div>--%>
+    <%--                <div class="modal-footer">--%>
+    <%--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+    <%--                    <button type="button" class="btn btn-primary">Save changes</button>--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#myBtn").click(function(){
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
                 $("#myModal").modal();
             });
         });
     </script>
-</form>
-</div>
+
 </body>
 </html>

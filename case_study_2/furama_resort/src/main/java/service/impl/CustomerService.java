@@ -55,6 +55,9 @@ public class CustomerService implements ICustomerService {
         if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]+$")) {
             return false;
         }
+        if(customer.getCustomer_phone().matches("^[090]|[091]|[(84)]+\\+[90]|[(84)]+\\+[91]+[0-9]{7}+$")){
+
+        }
         return true;
     }
 }
