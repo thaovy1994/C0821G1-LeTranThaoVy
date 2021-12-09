@@ -36,11 +36,25 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void deleteCustomer(Customer customer) {
-        repository.deleteCustomer(customer);
+        if(checkCustomer(customer)){
+            repository.deleteCustomer(customer);
+        }else{
+            System.out.println("error");
+        }
     }
 
     @Override
     public void editCustomer(Customer customer) {
         repository.editCustomer(customer);
+    }
+
+    public boolean checkCustomer(Customer customer) {
+        if (customer.getCustomer_id() < 0) {
+            return false;
+        }
+        if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]+$")) {
+            return false;
+        }
+        return true;
     }
 }

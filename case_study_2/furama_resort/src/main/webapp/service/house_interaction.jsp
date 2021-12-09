@@ -12,7 +12,10 @@
     <title>Service</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-image"
+      style="
+    background-image: url('https://bgwall.net/wp-content/uploads/2014/09/Dandelion-Flower-Wallpaper-Full-HD.jpg');
+      height: 400px;">
 <div class="row">
     <div class="col-lg-1">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzVHX-tqV7TnaGm1NeHANiMX1dcGm4bfHrQ&usqp=CAU"
@@ -39,7 +42,7 @@
         </div>
     </nav>
 </div>
-<form>
+<form class="bg-info">
     <c:out value="${msg}"></c:out>
     <div class="row">
         <div class="col-lg-12">
@@ -57,7 +60,7 @@
                     <th scope="col">Number of floors</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="content" style="color: white">
                 <c:forEach var="houses" items="${house}">
                     <tr>
                         <th scope="col"><c:out value="${houses.service_id}"/></th>

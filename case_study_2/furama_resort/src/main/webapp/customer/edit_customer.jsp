@@ -12,7 +12,9 @@
     <title>Customer</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-image"
+      style="
+    background-image: url('https://bgwall.net/wp-content/uploads/2014/09/Dandelion-Flower-Wallpaper-Full-HD.jpg');">
 <div class="row">
     <div class="col-lg-1">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzVHX-tqV7TnaGm1NeHANiMX1dcGm4bfHrQ&usqp=CAU"

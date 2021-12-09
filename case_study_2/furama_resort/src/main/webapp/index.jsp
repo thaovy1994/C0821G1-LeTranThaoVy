@@ -5,16 +5,19 @@
     <title>Employee List</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-image"
+      style="
+    background-image: url('https://bgwall.net/wp-content/uploads/2014/09/Dandelion-Flower-Wallpaper-Full-HD.jpg');
+      height: 400px;">
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-10">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzVHX-tqV7TnaGm1NeHANiMX1dcGm4bfHrQ&usqp=CAU"
              width="100px">
     </div>
-    <div class="col-lg-6">
-
+    <div class="col-lg-2">
+        thao vy
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

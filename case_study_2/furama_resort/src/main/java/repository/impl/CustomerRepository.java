@@ -31,7 +31,7 @@ public class CustomerRepository implements ICustomerRepository {
                 customerList.add(customerObj);
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error");
         }
         return customerList;
     }
@@ -60,7 +60,7 @@ public class CustomerRepository implements ICustomerRepository {
                 customerList.add(customerObj);
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error");
         }
         return customerList;
     }
@@ -83,7 +83,7 @@ public class CustomerRepository implements ICustomerRepository {
 
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error");
         }
     }
 
@@ -95,7 +95,7 @@ public class CustomerRepository implements ICustomerRepository {
 
             statement.executeUpdate();
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error");
         }
     }
 
@@ -118,7 +118,7 @@ public class CustomerRepository implements ICustomerRepository {
 
             statement.executeUpdate();
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("Error");
         }
     }
 }
