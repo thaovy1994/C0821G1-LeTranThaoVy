@@ -40,12 +40,12 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="idCard" placeholder="gender" class="form-control">
+            <input type="text" name="gender" placeholder="gender" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="salary" placeholder="idCard" class="form-control">
+            <input type="text" name="idCard" placeholder="idCard" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">
@@ -65,7 +65,7 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-            <input type="text" name="degree" placeholder="type_customer" class="form-control">
+            <input type="text" name="type_customer" placeholder="type_customer" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center">

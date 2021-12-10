@@ -102,9 +102,9 @@ public class EmployeeServlet extends HttpServlet {
             case "create":
                 request.getRequestDispatcher("employee/create_employee.jsp").forward(request, response);
                 break;
-            case "delete":
-                request.getRequestDispatcher("employee/delete_employee.jsp").forward(request, response);
-                break;
+//            case "delete":
+//                request.getRequestDispatcher("employee/delete_employee.jsp").forward(request, response);
+//                break;
             case "edit":
                 request.getRequestDispatcher("employee/edit_employee.jsp").forward(request, response);
                 break;

@@ -37,7 +37,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public void deleteCustomer(Customer customer) {
 //        if(checkCustomer(customer)){
-            repository.deleteCustomer(customer);
+        repository.deleteCustomer(customer);
 //        }else{
 //            System.out.println("error");
 //        }
@@ -52,12 +52,14 @@ public class CustomerService implements ICustomerService {
         if (customer.getCustomer_id() < 0) {
             return false;
         }
-        if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]+$")) {
-            return false;
-        }
-        if(customer.getCustomer_phone().matches("^[090]|[091]|[(84)]+\\+[90]|[(84)]+\\+[91]+[0-9]{7}+$")){
+        //check id có tồn tại trong DB ko, rồi mới xóa
 
-        }
+//        if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]+$")) {
+//            return false;
+//        }
+//        if(customer.getCustomer_phone().matches("^[070]|[091]+[0-9]{7}+$")){
+//
+//        }
         return true;
     }
 }

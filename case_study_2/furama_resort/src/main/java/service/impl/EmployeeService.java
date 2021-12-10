@@ -5,7 +5,9 @@ import repository.IEmployeeRepository;
 import repository.impl.EmployeeRepository;
 import service.IEmployeeService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeService implements IEmployeeService {
     private IEmployeeRepository repository = new EmployeeRepository();
@@ -30,17 +32,32 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void createEmployee(Employee employee) {
-        repository.createEmployee(employee);
+    public Map<String, String> createEmployee(Employee employee) {
+        Map<String, String> errorList = new HashMap<>();
+        if (employee.getEmployee_name().equals("")) {
+            errorList.put("name", "Please input !");
+        } else if (employee.getEmployee_salary() < 0) {
+            errorList.put("salary", "Salary must be more than 0 ");
+        } else if (!employee.getEmployee_id_card().matches("^[0-9]{9,12}+$")) {
+            errorList.put("id_card", "Wrong format");
+        } else {
+            this.repository.createEmployee(employee);
+        }
+        return errorList;
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
+    public Map<String, String> deleteEmployee(Employee employee) {
+        Map<String, String> errorList = new HashMap<>();
         repository.deleteEmployee(employee);
+        return errorList;
     }
 
     @Override
-    public void editEmployee(Employee employee) {
+    public Map<String, String> editEmployee(Employee employee) {
+        Map<String, String> errorList = new HashMap<>();
         repository.editEmployee(employee);
+        return errorList;
     }
+
 }

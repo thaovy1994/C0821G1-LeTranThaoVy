@@ -45,7 +45,7 @@
                 <form class="d-flex" method="post">
                     <input type="hidden" name="action" value="search">
                     <input class="form-control me-2" type="search" aria-label="Search" name="name"
-                           placeholder="name need to find">
+                           placeholder="Input name">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
