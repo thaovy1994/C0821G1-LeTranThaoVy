@@ -140,7 +140,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="text" name="id" placeholder="id" class="form-control">
-                    <p>Are you sure to delete customer?</p>
+                    <p>Are you sure to delete employee?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

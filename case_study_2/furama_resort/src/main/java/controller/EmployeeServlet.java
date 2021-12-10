@@ -88,7 +88,14 @@ public class EmployeeServlet extends HttpServlet {
         int position = Integer.parseInt(request.getParameter("position"));
         int division = Integer.parseInt(request.getParameter("division"));
         Employee employee = new Employee(id, name, birthday, idCard, salary, phone, email, address, degree, position, division);
-        service.createEmployee(employee);
+        boolean isCreated = service.createEmployee(employee);
+        if (isCreated) {
+            request.setAttribute("msg", "Successful");
+        } else {
+            request.setAttribute("msg", "Unsuccessful");
+            request.setAttribute("msgName","Invalid name");
+            request.getRequestDispatcher("employee/create_employee.jsp").forward(request,response);
+        }
         request.setAttribute("employee", service.showEmployee());
         request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
     }

@@ -32,32 +32,35 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Map<String, String> createEmployee(Employee employee) {
-        Map<String, String> errorList = new HashMap<>();
-        if (employee.getEmployee_name().equals("")) {
-            errorList.put("name", "Please input !");
-        } else if (employee.getEmployee_salary() < 0) {
-            errorList.put("salary", "Salary must be more than 0 ");
-        } else if (!employee.getEmployee_id_card().matches("^[0-9]{9,12}+$")) {
-            errorList.put("id_card", "Wrong format");
-        } else {
+    public boolean createEmployee(Employee employee) {
+        if (checkEmployee(employee)) {
             this.repository.createEmployee(employee);
+            return true;
+        } else {
+            return false;
         }
-        return errorList;
     }
 
     @Override
-    public Map<String, String> deleteEmployee(Employee employee) {
-        Map<String, String> errorList = new HashMap<>();
+    public void deleteEmployee(Employee employee) {
         repository.deleteEmployee(employee);
-        return errorList;
     }
 
     @Override
-    public Map<String, String> editEmployee(Employee employee) {
-        Map<String, String> errorList = new HashMap<>();
+    public void editEmployee(Employee employee) {
         repository.editEmployee(employee);
-        return errorList;
     }
 
+    public boolean checkEmployee(Employee employee) {
+        if (employee.getEmployee_id() < 0) {
+            return false;
+        }
+        if (employee.getEmployee_name().equals("")) {
+            return false;
+        }
+        if (employee.getEmployee_salary() < 0) {
+            return false;
+        }
+        return true;
+    }
 }

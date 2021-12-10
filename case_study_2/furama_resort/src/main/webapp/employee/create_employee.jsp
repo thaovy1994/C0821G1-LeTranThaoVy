@@ -5,7 +5,9 @@
     <title>Create Employee</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-image"
+      style="
+    background-image: url('https://bgwall.net/wp-content/uploads/2014/09/Dandelion-Flower-Wallpaper-Full-HD.jpg');">
 <div class="row">
     <div class="col-lg-1">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzVHX-tqV7TnaGm1NeHANiMX1dcGm4bfHrQ&usqp=CAU"
@@ -19,14 +21,17 @@
             <input type="text" name="id" placeholder="id" class="form-control" aria-describedby="passwordHelpInline">
         </div>
     </div>
+
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="name" placeholder="name" class="form-control">
+            <span style="color: red"><c:out value="${msgName}"></c:out></span>
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="birthday" placeholder="birthday" class="form-control">
+            <span style="color: red"><c:out value="${msgbirth}"></c:out></span>
         </div>
     </div>
     <div class="row g-3 align-items-center">
@@ -37,11 +42,13 @@
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="salary" placeholder="salary" class="form-control">
+            <span style="color: red"><c:out value="${msgsalary}"></c:out></span>
         </div>
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
             <input type="text" name="phone" placeholder="phone" class="form-control">
+            <span style="color: red"><c:out value="${msgphone}"></c:out></span>
         </div>
     </div>
     <div class="row g-3 align-items-center">
@@ -71,7 +78,7 @@
     </div>
     <div class="row g-3 align-items-center">
         <div class="col-lg-auto ms-lg-5">
-        <input type="submit" value="Add New">
+            <input type="submit" value="Add New">
         </div>
     </div>
 </form>

@@ -10,9 +10,9 @@ public interface IEmployeeService {
 
     List<Employee> searchEmployee(String employee_name);
 
-    Map<String,String> createEmployee(Employee employee);
+    boolean createEmployee(Employee employee);
 
-    Map<String,String> deleteEmployee(Employee employee);
+    void deleteEmployee(Employee employee);
 
-    Map<String,String> editEmployee(Employee employee);
+    void editEmployee(Employee employee);
 }
