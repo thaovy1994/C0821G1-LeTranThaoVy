@@ -25,7 +25,8 @@
                         <a class="nav-link" href="/index_employee?action=create">Create</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="nav-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <button type="button" class="nav-item btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#myModal">
                             Delete
                         </button>
                     </li>
@@ -45,6 +46,7 @@
 </div>
 <form class="bg-info">
     <c:out value="${msg}"></c:out>
+    <p class="mx-5" style="color: yellow"><c:out value="${msgdelete}"></c:out></p>
     <div class="row">
         <div class="col-lg-12">
             <table class="table">

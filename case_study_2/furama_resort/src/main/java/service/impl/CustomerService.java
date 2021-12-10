@@ -30,36 +30,51 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void createCustomer(Customer customer) {
-        repository.createCustomer(customer);
+    public boolean createCustomer(Customer customer) {
+        if (checkCustomer(customer)) {
+            repository.createCustomer(customer);
+            repository.createCustomer(customer);
+        } else {
+            System.out.println("error");
+        }
+        return false;
     }
 
     @Override
-    public void deleteCustomer(Customer customer) {
-//        if(checkCustomer(customer)){
-        repository.deleteCustomer(customer);
-//        }else{
-//            System.out.println("error");
-//        }
+    public boolean deleteCustomer(Customer customer) {
+        if (checkCustomer(customer)) {
+            repository.deleteCustomer(customer);
+            return true;
+        } else {
+            System.out.println("error");
+        }
+        return false;
     }
 
     @Override
-    public void editCustomer(Customer customer) {
-        repository.editCustomer(customer);
+    public boolean editCustomer(Customer customer) {
+        if (checkCustomer(customer)) {
+            repository.editCustomer(customer);
+            return true;
+        } else {
+            System.out.println("error");
+        }
+        return false;
     }
 
     public boolean checkCustomer(Customer customer) {
         if (customer.getCustomer_id() < 0) {
             return false;
         }
-        //check id có tồn tại trong DB ko, rồi mới xóa
-
-//        if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]+$")) {
-//            return false;
-//        }
-//        if(customer.getCustomer_phone().matches("^[070]|[091]+[0-9]{7}+$")){
-//
-//        }
+        if (!customer.getCustomer_name().matches("^[KH]{1}+\\-[0-9]{4}+$")) {
+            return false;
+        }
+        if (!customer.getCustomer_phone().matches("^(090|091|8490|8491)\\d{7}+$")) {
+            return false;
+        }
+        if(!customer.getCustomer_id_card().matches("^[0-9]{9,12}+$")){
+            return false;
+        }
         return true;
     }
 }

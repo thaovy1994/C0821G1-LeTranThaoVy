@@ -42,13 +42,23 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
-        repository.deleteEmployee(employee);
+    public boolean deleteEmployee(Employee employee) {
+        if (checkEmployee(employee)) {
+            this.repository.deleteEmployee(employee);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void editEmployee(Employee employee) {
-        repository.editEmployee(employee);
+    public boolean editEmployee(Employee employee) {
+        if (checkEmployee(employee)) {
+            this.repository.editEmployee(employee);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean checkEmployee(Employee employee) {
@@ -61,6 +71,13 @@ public class EmployeeService implements IEmployeeService {
         if (employee.getEmployee_salary() < 0) {
             return false;
         }
+        if (!employee.getEmployee_birthday().matches("^([0-9]{2})\\-([0-9]{2})\\-([0-9]{4})$")) {
+            return false;
+        }
+        if(!employee.getEmployee_email().matches("^[\\w_]+\\@([\\w]+\\.)+[\\w]+[\\w]$")){
+            return false;
+        }
+
         return true;
     }
 }

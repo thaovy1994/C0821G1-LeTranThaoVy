@@ -12,7 +12,7 @@ public interface IEmployeeService {
 
     boolean createEmployee(Employee employee);
 
-    void deleteEmployee(Employee employee);
+    boolean deleteEmployee(Employee employee);
 
-    void editEmployee(Employee employee);
+    boolean editEmployee(Employee employee);
 }

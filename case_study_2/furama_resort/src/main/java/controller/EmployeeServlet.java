@@ -70,6 +70,10 @@ public class EmployeeServlet extends HttpServlet {
             if (id == employee.getEmployee_id()) {
                 service.deleteEmployee(employee);
             }
+            //trường hợp tại 1 thời điểm chỉ có 1 người dùng thao tác xóa thì ok
+            else{
+                request.setAttribute("msgdelete", "id can't found in list");
+            }
         }
         request.setAttribute("employee", service.showEmployee());
         request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
@@ -93,8 +97,9 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("msg", "Successful");
         } else {
             request.setAttribute("msg", "Unsuccessful");
-            request.setAttribute("msgName","Invalid name");
-            request.getRequestDispatcher("employee/create_employee.jsp").forward(request,response);
+            request.setAttribute("msgName", "Invalid name");
+            request.setAttribute("msgbirth", "Invalid birth");
+            request.getRequestDispatcher("employee/create_employee.jsp").forward(request, response);
         }
         request.setAttribute("employee", service.showEmployee());
         request.getRequestDispatcher("employee/employee_interaction.jsp").forward(request, response);
