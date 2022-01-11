@@ -99,7 +99,8 @@ public class EmployeeRepository implements IEmployeeRepository {
     @Override
     public void deleteEmployee(Employee employee) {
         try {
-            PreparedStatement statement = BaseRepository.connection.prepareStatement("delete from nhan_vien where ma_nhan_vien=?");
+            PreparedStatement statement = BaseRepository.connection.prepareStatement
+                    ("delete from nhan_vien where ma_nhan_vien=?");
             statement.setInt(1, employee.getEmployee_id());
 
             statement.executeUpdate();

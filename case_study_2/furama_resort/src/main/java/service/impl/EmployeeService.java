@@ -5,9 +5,7 @@ import repository.IEmployeeRepository;
 import repository.impl.EmployeeRepository;
 import service.IEmployeeService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EmployeeService implements IEmployeeService {
     private IEmployeeRepository repository = new EmployeeRepository();
@@ -71,7 +69,7 @@ public class EmployeeService implements IEmployeeService {
         if (employee.getEmployee_salary() < 0) {
             return false;
         }
-        if (!employee.getEmployee_birthday().matches("^([0-9]{2})\\-([0-9]{2})\\-([0-9]{4})$")) {
+        if (!employee.getEmployee_birthday().matches("^([0-9A-Z]{2})\\-([0-9]{2})\\-([0-9]{4})$")) {
             return false;
         }
         if(!employee.getEmployee_email().matches("^[\\w_]+\\@([\\w]+\\.)+[\\w]+[\\w]$")){
